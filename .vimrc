@@ -164,3 +164,6 @@ let g:tagbar_autofocus = 1
 " Pymode
 let g:pymode_folding=0
 let g:pymode_python="python3"
+
+" Vimwiki
+let g:vimwiki_list=[{'path':'~/.wiki'}]
