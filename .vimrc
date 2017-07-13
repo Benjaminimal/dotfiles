@@ -30,9 +30,12 @@ call plug#begin(expand('~/.vim/plugged'))
 Plug 'vimwiki/vimwiki'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'jiangmiao/auto-pairs'
-Plug 'python-mode/python-mode'
 Plug 'majutsushi/tagbar'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'python-mode/python-mode'
+Plug 'sukima/xmledit'
+Plug 'iynaix/django.vim'
 
 call plug#end()
 
@@ -66,7 +69,7 @@ set number
 set relativenumber
 
 " Tab config
-set expandtab tabstop=4 shiftwidth=4
+set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 
 " Backspace config
 set backspace=indent,eol,start
@@ -167,3 +170,6 @@ let g:pymode_python="python3"
 
 " Vimwiki
 let g:vimwiki_list=[{'path':'~/.wiki'}]
+
+" Django syntax
+au BufNewFile,BufRead *.html set filetype=htmldjango
