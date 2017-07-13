@@ -1,21 +1,41 @@
 #!/bin/bash
 #---------------------------------------
+#
 # install.sh
-#   Installs dotfiles
+#
+#                   Benjamin Zinschitz
+#
+#
+#   Back up existing dotfiles and
+#   symlink these new ones
+#
 #---------------------------------------
 
-dir=~/dotfiles
+
+dir=~/.dotfiles
 olddir=~/.dotfiles_old
+scriptdir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 files=".vimrc .zshrc"
 
-echo "Creating $olddir for backup of existing dotfiles in ~"
-mkdir -p $olddir
-
-cd $dir
+if [ ! -d $dir ]; then
+    echo "Creating directory $olddir"
+    mkdir $dir
+    echo "Copying new dotfiles to $dir"
+    for file in $files; do
+        cp $scriptdir/$file $dir/$file
+    done
+fi
 
 for file in $files; do
-    echo "Moving $file from ~ to $olddir"
-    mv ~/$file $olddir/
-    echo "Creating symlink to $file in ~"
+    if [ -e ~/$file ]; then
+        if [ ! -d $olddir ]; then
+            echo "Creating directory $olddir"
+            mkdir -p $olddir
+            cd $dir
+        fi
+        echo "Moving ~/$file to $olddir"
+        mv ~/$file $olddir/
+    fi
+    echo "Creating symlink to $dir/$file"
     ln -s $dir/$file ~/$file
 done
