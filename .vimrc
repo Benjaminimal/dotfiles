@@ -33,6 +33,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
+Plug 'Valloric/YouCompleteMe'
 Plug 'python-mode/python-mode'
 Plug 'sukima/xmledit'
 Plug 'iynaix/django.vim'
@@ -164,12 +165,23 @@ nnoremap <Leader>y :NERDTreeFind<CR>
 nnoremap <Leader>o :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
-" Pymode
-let g:pymode_folding=0
-let g:pymode_python="python3"
+" YCM
+let g:ycm_collect_identifiers_from_tags_files=1
+let g:ycm_use_ultisnips_completer=1
+let g:ycm_seed_identifiers_with_syntax=1
+let g:ycm_complete_in_comments=1
+let g:ycm_complete_in_strings=1
+let g:ycm_autoclose_preview_window_after_insertion=1
+let g:ycm_python_binary_path='python'
 
 " Vimwiki
 let g:vimwiki_list=[{'path':'~/.wiki'}]
+
+" Pymode
+let g:pymode_folding=0
+let g:pymode_breakpoint=0
+let g:pymode_rope_completion=0
+let g:pymode_python="python3"
 
 " Django syntax
 au BufNewFile,BufRead *.html set filetype=htmldjango
