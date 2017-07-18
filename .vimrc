@@ -57,6 +57,7 @@ set nobackup
 set hidden
 set autoread
 set fileformats=unix,dos,mac
+set encoding=utf-8
 
 " Modelines
 set modeline
