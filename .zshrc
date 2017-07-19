@@ -85,3 +85,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias se="source .env/bin/activate||source env/bin/activate"
 alias qe="deactivate"
+
+# Some env vars
+export VISUAL="vim"
