@@ -36,7 +36,7 @@ Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
 Plug 'python-mode/python-mode'
 Plug 'sukima/xmledit'
-Plug 'iynaix/django.vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'morhetz/gruvbox'
 Plug 'yegappan/grep'
 Plug 'pangloss/vim-javascript'
@@ -211,6 +211,3 @@ let g:pymode_folding=0
 let g:pymode_breakpoint=0
 let g:pymode_rope_completion=0
 let g:pymode_python="python3"
-
-" Django syntax
-au BufNewFile,BufRead *.html set filetype=htmldjango
