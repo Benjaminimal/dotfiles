@@ -88,7 +88,7 @@ fi
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias se="source .env/bin/activate||source env/bin/activate"
+alias se="source .venv/bin/activate||source .env/bin/activate||source env/bin/activate||source venv/bin/activate"
 alias qe="deactivate"
 
 # Some env vars
