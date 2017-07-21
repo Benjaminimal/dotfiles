@@ -76,7 +76,7 @@ source $ZSH/oh-my-zsh.sh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Run on startup
-if command -v neofetch; then
+if [ -f $(which neofetch) ]; then
     neofetch
 fi
 
