@@ -37,6 +37,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'python-mode/python-mode'
 Plug 'sukima/xmledit'
 Plug 'iynaix/django.vim'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -65,6 +66,11 @@ set modelines=10
 
 " Reload .vimrc on write
 autocmd! bufwritepost .vimrc source %
+
+" Colors
+set t_Co=256
+colorscheme gruvbox
+set background=dark
 
 " Numbers!
 set number
