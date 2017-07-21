@@ -39,6 +39,7 @@ Plug 'sukima/xmledit'
 Plug 'iynaix/django.vim'
 Plug 'morhetz/gruvbox'
 Plug 'yegappan/grep'
+Plug 'pangloss/vim-javascript'
 
 call plug#end()
 
