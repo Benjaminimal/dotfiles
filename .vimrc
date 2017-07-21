@@ -38,6 +38,7 @@ Plug 'python-mode/python-mode'
 Plug 'sukima/xmledit'
 Plug 'iynaix/django.vim'
 Plug 'morhetz/gruvbox'
+Plug 'yegappan/grep'
 
 call plug#end()
 
@@ -197,6 +198,12 @@ let g:ycm_python_binary_path='python'
 
 " Vimwiki
 let g:vimwiki_list=[{'path':'~/.wiki'}]
+
+" grep.vim
+nnoremap <silent> <leader>f :Rgrep<CR>
+let Grep_Default_Options = '-IR'
+let Grep_Skip_Files = '*.log *.db'
+let Grep_Skip_Dirs = '.git node_modules'
 
 " Pymode
 let g:pymode_folding=0
