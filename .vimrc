@@ -211,3 +211,6 @@ let g:pymode_folding=0
 let g:pymode_breakpoint=0
 let g:pymode_rope_completion=0
 let g:pymode_python="python3"
+
+" Eclim
+let g:EclimCompletionMethod = 'omnifunc'
