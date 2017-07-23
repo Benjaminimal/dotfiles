@@ -75,9 +75,9 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Run on startup
-if [ -f $(which neofetch) ]; then
-    neofetch
+# Include local settings
+if [ -f $HOME/.zsh_local ]; then
+    . $HOME/.zsh_local
 fi
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
