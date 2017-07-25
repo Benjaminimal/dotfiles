@@ -34,11 +34,14 @@ Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
-Plug 'python-mode/python-mode'
 Plug 'sukima/xmledit'
-Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'morhetz/gruvbox'
 Plug 'yegappan/grep'
+Plug 'vim-syntastic/syntastic'
+
+" Language specific
+Plug 'python-mode/python-mode'
+Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'pangloss/vim-javascript'
 
 call plug#end()
@@ -187,7 +190,7 @@ nnoremap <Leader>y :NERDTreeFind<CR>
 
 " Tagbar
 nnoremap <Leader>o :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
+let g:tagbar_autofocus=1
 
 " YCM
 let g:ycm_collect_identifiers_from_tags_files=1
@@ -210,8 +213,25 @@ let Grep_Skip_Dirs = '.git node_modules'
 " Pymode
 let g:pymode_folding=0
 let g:pymode_breakpoint=0
-let g:pymode_rope_completion=0
+let g:pymode_rope=0
+let g:pymode_lint=0
 let g:pymode_python="python3"
 
 " Eclim
 let g:EclimCompletionMethod = 'omnifunc'
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_aggregate_errors = 1
+
+let g:syntastic_error_symbol='✗'
+let g:syntastic_warning_symbol='⚠'
+let g:syntastic_style_error_symbol = '✗'
+let g:syntastic_style_warning_symbol = '⚠'
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
