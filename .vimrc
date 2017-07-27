@@ -38,6 +38,7 @@ Plug 'sukima/xmledit'
 Plug 'morhetz/gruvbox'
 Plug 'yegappan/grep'
 Plug 'vim-syntastic/syntastic'
+Plug 'tpope/vim-commentary'
 
 " Language specific
 Plug 'python-mode/python-mode'
