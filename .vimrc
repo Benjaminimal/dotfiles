@@ -40,10 +40,13 @@ Plug 'yegappan/grep'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-commentary'
 
-" Language specific
+" Python
 Plug 'python-mode/python-mode'
 Plug 'Glench/Vim-Jinja2-Syntax'
+
+" Javascript
 Plug 'pangloss/vim-javascript'
+Plug 'ternjs/tern_for_vim'
 
 call plug#end()
 
