@@ -48,6 +48,10 @@ Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim'
 
+" Typescript
+Plug 'leafgarland/typescript-vim'
+Plug 'Quramy/tsuquyomi'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""
