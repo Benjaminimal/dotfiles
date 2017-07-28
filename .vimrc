@@ -154,11 +154,7 @@ nnoremap <leader>k :bd<bar>vs<bar>bn<CR>
 
 " Write and quit
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>q! :q!<CR>
-nnoremap <Leader>qa :qa<CR>
-nnoremap <Leader>qa! :qa!<CR>
 nnoremap <Leader>w :w<CR>
-nnoremap <Leader>wq :wq<CR>
 cnoreabbrev W! w!
 cnoreabbrev Q! q!
 cnoreabbrev Qall! qall!
