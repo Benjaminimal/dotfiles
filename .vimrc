@@ -85,6 +85,9 @@ set t_Co=256
 colorscheme gruvbox
 set background=dark
 
+" Cursorline
+set cursorline
+
 " Numbers!
 set number
 set relativenumber
