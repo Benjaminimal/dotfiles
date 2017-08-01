@@ -195,6 +195,7 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
 nnoremap <Leader>y :NERDTreeFind<CR>
+let NERDTreeIgnore=['htmlcov']
 
 " Tagbar
 nnoremap <Leader>o :TagbarToggle<CR>
