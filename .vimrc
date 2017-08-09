@@ -233,7 +233,7 @@ nnoremap <Leader>grm :Gremove<CR>
 nnoremap <Leader>gmv :Gmove 
 nnoremap <Leader>gre :Gread<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
-nnoremap <Leader>gl :Glog --reverse<CR>
+nnoremap <Leader>gl :Glog<CR>
 
 " vim-gitgutter
 set updatetime=250
