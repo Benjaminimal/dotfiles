@@ -40,6 +40,7 @@ Plug 'yegappan/grep'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 
 " Python
 Plug 'python-mode/python-mode'
@@ -230,6 +231,7 @@ nnoremap <Leader>gll :Gpull<CR>
 nnoremap <Leader>grm :Gremove<CR>
 nnoremap <Leader>gmv :Gmove 
 nnoremap <Leader>gre :Gread<CR>
+nnoremap <Leader>gb :Gbrowse<CR>
 
 " Pymode
 let g:pymode_folding=0
