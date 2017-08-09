@@ -228,11 +228,12 @@ nnoremap <Leader>gd :Gvdiff<CR>
 nnoremap <Leader>gw :Gwrite 
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gpu :Gpush<CR>
-nnoremap <Leader>gll :Gpull<CR>
+nnoremap <Leader>gul :Gpull<CR>
 nnoremap <Leader>grm :Gremove<CR>
 nnoremap <Leader>gmv :Gmove 
 nnoremap <Leader>gre :Gread<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
+nnoremap <Leader>gl :Glog --reverse<CR>
 
 " vim-gitgutter
 set updatetime=250
