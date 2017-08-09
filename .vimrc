@@ -39,6 +39,7 @@ Plug 'morhetz/gruvbox'
 Plug 'yegappan/grep'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 
 " Python
 Plug 'python-mode/python-mode'
@@ -218,6 +219,17 @@ nnoremap <silent> <leader>f :Rgrep<CR>
 let Grep_Default_Options = '-IR'
 let Grep_Skip_Files = '*.log *.db'
 let Grep_Skip_Dirs = '.git node_modules'
+
+" vim-fugitive
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gvdiff<CR>
+nnoremap <Leader>gw :Gwrite 
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gpu :Gpush<CR>
+nnoremap <Leader>gll :Gpull<CR>
+nnoremap <Leader>grm :Gremove<CR>
+nnoremap <Leader>gmv :Gmove 
+nnoremap <Leader>gre :Gread<CR>
 
 " Pymode
 let g:pymode_folding=0
