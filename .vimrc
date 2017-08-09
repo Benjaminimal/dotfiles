@@ -41,6 +41,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
 
 " Python
 Plug 'python-mode/python-mode'
@@ -232,6 +233,9 @@ nnoremap <Leader>grm :Gremove<CR>
 nnoremap <Leader>gmv :Gmove 
 nnoremap <Leader>gre :Gread<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
+
+" vim-gitgutter
+set updatetime=250
 
 " Pymode
 let g:pymode_folding=0
