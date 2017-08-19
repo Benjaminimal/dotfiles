@@ -55,6 +55,9 @@ Plug 'ternjs/tern_for_vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'Quramy/tsuquyomi'
 
+" Processing
+Plug 'sophacles/vim-processing'
+
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""
