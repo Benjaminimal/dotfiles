@@ -90,6 +90,7 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias se="source .venv/bin/activate||source .env/bin/activate||source env/bin/activate||source venv/bin/activate"
 alias qe="deactivate"
+alias py="python"
 
 # Some env vars
 export VISUAL="vim"
