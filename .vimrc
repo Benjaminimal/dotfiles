@@ -145,7 +145,7 @@ noremap <C-h> <C-w>h
 noremap <Leader>c :bd<CR>
 noremap <Leader>x :bn<CR>
 noremap <Leader>z :bp<CR>
-noremap <Leader>b :ls<CR>:b 
+noremap <Leader>b :CtrlPBuffer<CR>
 
 " Maintain visual mode after shifting
 vmap < <gv
