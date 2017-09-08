@@ -42,6 +42,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
+Plug 'guywald1/vim-prismo'
 
 " Python
 Plug 'python-mode/python-mode'
@@ -240,6 +241,10 @@ nnoremap <Leader>gl :Glog<CR>
 
 " vim-gitgutter
 set updatetime=250
+
+" vim-prismo
+nnoremap <Leader>p :Prismo<CR>
+let g:prismo_dash='-'
 
 " Pymode
 let g:pymode_folding=0
