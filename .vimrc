@@ -207,6 +207,7 @@ let NERDTreeIgnore=['htmlcov', '__pycache__']
 " Tagbar
 nnoremap <Leader>o :TagbarToggle<CR>
 let g:tagbar_autofocus=1
+let g:tagbar_sort=0
 
 " YCM
 let g:ycm_collect_identifiers_from_tags_files=1
