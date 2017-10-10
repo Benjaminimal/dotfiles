@@ -91,7 +91,7 @@ fi
 alias capsesc="setxkbmap -option \"caps:swapescape\""
 alias se="source .venv/bin/activate||source .env/bin/activate||source env/bin/activate||source venv/bin/activate"
 alias qe="deactivate"
-alias py="python"
+alias py="python3"
 alias wd="cd ~/Projects/gefco-simple;se"
 
 # Some env vars
