@@ -32,6 +32,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
+Plug 'qpkorr/vim-bufkill'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
@@ -147,7 +148,7 @@ noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
 " Buffer navigation
-noremap <Leader>c :bd<CR>
+noremap <Leader>c :BD<CR>
 noremap <Leader>x :bn<CR>
 noremap <Leader>z :bp<CR>
 noremap <Leader>b :Buffer<CR>
@@ -162,9 +163,6 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Line inserts in normal mode
 nnoremap <CR> o<ESC>
-
-" Close buffer and open new vertical split
-nnoremap <leader>k :bd<bar>vs<bar>bn<CR>
 
 " Write and quit
 nnoremap <Leader>q :q<CR>
