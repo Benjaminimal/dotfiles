@@ -27,7 +27,6 @@ call plug#begin(expand('~/.vim/plugged'))
 "
 """"""""""""""""""""""""""""""""""""""""
 
-Plug 'vimwiki/vimwiki'
 Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -208,9 +207,6 @@ let g:ycm_complete_in_comments=1
 let g:ycm_complete_in_strings=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_python_binary_path='python'
-
-" Vimwiki
-let g:vimwiki_list=[{'path':'~/.wiki'}]
 
 " Ack
 nnoremap <Leader>f :Ack!<Space>
