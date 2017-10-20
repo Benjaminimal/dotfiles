@@ -31,7 +31,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'kien/ctrlp.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
-" Plug 'vim-scripts/taglist.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
@@ -209,9 +208,6 @@ let NERDTreeIgnore=['htmlcov', '__pycache__']
 nnoremap <Leader>o :TagbarToggle<CR>
 let g:tagbar_autofocus=1
 let g:tagbar_sort=0
-
-" Taglist
-" nnoremap <leader>o :TlistToggle<CR>
 
 " YCM
 let g:ycm_collect_identifiers_from_tags_files=1
