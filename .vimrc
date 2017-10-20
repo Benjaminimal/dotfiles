@@ -45,22 +45,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
-Plug 'guywald1/vim-prismo'
 
 " Python
-Plug 'python-mode/python-mode'
 Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Javascript
-Plug 'pangloss/vim-javascript'
 Plug 'ternjs/tern_for_vim'
-
-" Typescript
-Plug 'leafgarland/typescript-vim'
-Plug 'Quramy/tsuquyomi'
-
-" Processing
-Plug 'sophacles/vim-processing'
 
 call plug#end()
 
@@ -240,17 +230,6 @@ nnoremap <Leader>gl :Glog<CR>
 
 " vim-gitgutter
 set updatetime=250
-
-" vim-prismo
-nnoremap <Leader>p :Prismo<CR>
-let g:prismo_dash='-'
-
-" Pymode
-let g:pymode_folding=0
-let g:pymode_breakpoint=0
-let g:pymode_rope=0
-let g:pymode_lint=0
-let g:pymode_python="python3"
 
 " Eclim
 let g:EclimCompletionMethod = 'omnifunc'
