@@ -28,6 +28,7 @@ call plug#begin(expand('~/.vim/plugged'))
 """"""""""""""""""""""""""""""""""""""""
 
 Plug 'vimwiki/vimwiki'
+Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
