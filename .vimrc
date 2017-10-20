@@ -38,7 +38,7 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'sukima/xmledit'
 Plug 'morhetz/gruvbox'
 Plug 'mileszs/ack.vim'
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -254,20 +254,10 @@ let g:pymode_python="python3"
 " Eclim
 let g:EclimCompletionMethod = 'omnifunc'
 
-" Syntastic
-let g:syntastic_python_checkers=["flake8"]
-let g:syntastic_python_flake8_args="--ignore=E501,E402"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_aggregate_errors = 1
-
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol = '✗'
-let g:syntastic_style_warning_symbol = '⚠'
+" Ale
+let g:ale_sign_warning = '▲'
+let g:ale_sign_error = '✗'
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
