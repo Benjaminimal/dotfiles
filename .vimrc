@@ -28,7 +28,8 @@ call plug#begin(expand('~/.vim/plugged'))
 """"""""""""""""""""""""""""""""""""""""
 
 Plug 'vimwiki/vimwiki'
-Plug 'kien/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
@@ -36,7 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
 Plug 'sukima/xmledit'
 Plug 'morhetz/gruvbox'
-Plug 'yegappan/grep'
+Plug 'mileszs/ack.vim'
 Plug 'vim-syntastic/syntastic'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
@@ -146,7 +147,7 @@ noremap <C-h> <C-w>h
 noremap <Leader>c :bd<CR>
 noremap <Leader>x :bn<CR>
 noremap <Leader>z :bp<CR>
-noremap <Leader>b :CtrlPBuffer<CR>
+noremap <Leader>b :Buffer<CR>
 
 " Maintain visual mode after shifting
 vmap < <gv
@@ -194,10 +195,8 @@ autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 "
 """"""""""""""""""""""""""""""""""""""""
 
-" Ctrlp
-let g:ctrlp_map='<Leader>e'
-let g:ctrlp_show_hidden=1
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" fzf
+nnoremap <Leader>e :Files<CR>
 
 " NerdTree
 nnoremap <Leader>t :NERDTreeToggle<CR>
@@ -221,11 +220,9 @@ let g:ycm_python_binary_path='python'
 " Vimwiki
 let g:vimwiki_list=[{'path':'~/.wiki'}]
 
-" grep.vim
-nnoremap <silent> <leader>f :Rgrep<CR>
-let Grep_Default_Options = '-IR'
-let Grep_Skip_Files = '*.log *.db'
-let Grep_Skip_Dirs = '.git node_modules'
+" Ack
+nnoremap <Leader>f :Ack!<Space>
+let g:ackprg = 'ag --vimgrep'
 
 " vim-fugitive
 nnoremap <Leader>gs :Gstatus<CR>

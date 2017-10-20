@@ -96,3 +96,5 @@ alias wd="cd ~/Projects/gefco-simple;se"
 
 # Some env vars
 export VISUAL="vim"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
