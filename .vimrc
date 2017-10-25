@@ -242,6 +242,7 @@ let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 nmap <silent> [e <Plug>(ale_previous_wrap)
 nmap <silent> ]e <Plug>(ale_next_wrap)
+let g:ale_python_flake8_args = '--ignore=E501,E402'
 
 " Lightline
 let g:lightline = {
