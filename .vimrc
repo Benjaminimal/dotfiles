@@ -37,7 +37,6 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
-Plug 'sukima/xmledit'
 Plug 'morhetz/gruvbox'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
@@ -45,6 +44,10 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
+
+" Html
+Plug 'valloric/MatchTagAlways'
+Plug 'sukima/xmledit'
 
 " Python
 Plug 'Glench/Vim-Jinja2-Syntax'
