@@ -224,7 +224,7 @@ let g:ycm_semantic_triggers =  {
     \   'ruby' : ['.', '::'],
     \   'lua' : ['.', ':'],
     \   'erlang' : [':'],
-    \   'python' : ['.', 'import '],
+    \   'python' : ['.', 'import ', 'def '],
     \   'html,htmldjango' : [' ', '<'],
     \ }
 
