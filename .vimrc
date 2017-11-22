@@ -213,6 +213,22 @@ let g:ycm_python_binary_path='python'
 " TODO: rework all leader mappings
 " TODO: find a mapping for this
 map <leader>p :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let g:ycm_semantic_triggers =  {
+    \   'c' : ['->', '.'],
+    \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+    \             're!\[.*\]\s'],
+    \   'ocaml' : ['.', '#'],
+    \   'cpp,objcpp' : ['->', '.', '::'],
+    \   'perl' : ['->'],
+    \   'php' : ['->', '::'],
+    \   'cs,java,javascript,typescript,d,perl6,scala,vb,elixir,go' : ['.'],
+    \   'ruby' : ['.', '::'],
+    \   'lua' : ['.', ':'],
+    \   'erlang' : [':'],
+    \   'python' : ['.', 'import '],
+    \   'html,jinja.html' : [' ', '<'],
+    \ }
+
 
 " Ack
 nnoremap <Leader>f :Ack!<Space>
