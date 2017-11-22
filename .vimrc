@@ -266,7 +266,7 @@ let g:ale_python_flake8_args = '--ignore=E501,E402'
 let g:lightline = {
 \ 'colorscheme': 'wombat',
 \ 'active': {
-\   'left': [['mode', 'paste'], ['filename', 'modified']],
+\   'left': [['mode', 'paste'], ['relativepath', 'modified']],
 \   'right': [['lineinfo'], ['percent'], ['filetype'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
 \ },
 \ 'component_expand': {
