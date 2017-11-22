@@ -44,13 +44,12 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Html
 Plug 'valloric/MatchTagAlways'
 Plug 'sukima/xmledit'
-
-" Python
-Plug 'Glench/Vim-Jinja2-Syntax'
 
 " Javascript
 Plug 'ternjs/tern_for_vim'
@@ -179,7 +178,7 @@ cnoreabbrev Qall qall
 
 autocmd FileType yaml setlocal ts=2 sw=2 sts=2 et
 autocmd FileType html setlocal ts=2 sw=2 sts=2 et
-autocmd FileType jinja.html setlocal ts=2 sw=2 sts=2 et
+autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
 autocmd FileType css setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 
@@ -226,7 +225,7 @@ let g:ycm_semantic_triggers =  {
     \   'lua' : ['.', ':'],
     \   'erlang' : [':'],
     \   'python' : ['.', 'import '],
-    \   'html,jinja.html' : [' ', '<'],
+    \   'html,htmldjango' : [' ', '<'],
     \ }
 
 
@@ -249,9 +248,6 @@ nnoremap <Leader>gl :Glog<CR>
 
 " vim-gitgutter
 set updatetime=250
-
-" Eclim
-let g:EclimCompletionMethod = 'omnifunc'
 
 " Gitgutter
 let g:gitgutter_sign_added = '∙'
@@ -307,3 +303,9 @@ function! LightlineLinterOK() abort
   let l:all_non_errors = l:counts.total - l:all_errors
   return l:counts.total == 0 ? '✓' : ''
 endfunction
+
+" UtilSnips
+let g:UltiSnipsExpandTrigger       = "<leader>ss"
+let g:UltiSnipsJumpForwardTrigger  = "<leader>ss"
+let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
+let g:UltiSnipsListSnippets        = "<leader>sl"
