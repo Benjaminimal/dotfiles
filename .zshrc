@@ -57,6 +57,13 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
+# xfce4-terminal 256 color support
+if [ -e /usr/share/terminfo/x/xterm+256color ]; then
+    export TERM='xterm-256color'
+else
+    export TERM='xterm-color'
+fi
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
