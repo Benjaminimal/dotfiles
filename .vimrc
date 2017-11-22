@@ -207,6 +207,9 @@ let g:ycm_complete_in_comments=1
 let g:ycm_complete_in_strings=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_python_binary_path='python'
+" TODO: rework all leader mappings
+" TODO: find a mapping for this
+map <leader>p :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Ack
 nnoremap <Leader>f :Ack!<Space>
