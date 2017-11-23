@@ -100,16 +100,11 @@ set expandtab tabstop=4 softtabstop=4 shiftwidth=4
 " Backspace config
 set backspace=indent,eol,start
 
-" Follow this leader
-let mapleader=','
-
 " Footer
 set wildmenu
 set showcmd
 set laststatus=2
 set noshowmode
-" TODO: see if we need this
-" set statusline=[%n]%F%m%r%h%w%=(%{&ff}/%Y)\ (line\ %l\/%L,\ col\ %c)\
 
 " Remember cursor position
 augroup vimrc-remember-cursor-position
@@ -125,57 +120,12 @@ set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap <leader>/ :noh<cr>
 
 " Split navigation
 set splitbelow
 set splitright
-noremap <Leader>h :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
 
-" Buffer navigation
-noremap <Leader>c :BD<CR>
-noremap <Leader>x :bn<CR>
-noremap <Leader>z :bp<CR>
-noremap <Leader>b :Buffer<CR>
-
-" Maintain visual mode after shifting
-vmap < <gv
-vmap > >gv
-
-" Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
-
-" Line inserts in normal mode
-nnoremap <CR> o<ESC>
-
-" Write and quit
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>w :w<CR>
-cnoreabbrev W! w!
-cnoreabbrev Q! q!
-cnoreabbrev Qall! qall!
-cnoreabbrev Wq wq
-cnoreabbrev Wa wa
-cnoreabbrev wQ wq
-cnoreabbrev WQ wq
-cnoreabbrev W w
-cnoreabbrev Q q
-cnoreabbrev Qall qall
-
-""""""""""""""""""""""""""""""""""""""""
-"
 " Filetypes
-"
-""""""""""""""""""""""""""""""""""""""""
-
 autocmd FileType yaml setlocal ts=2 sw=2 sts=2 et
 autocmd FileType html setlocal ts=2 sw=2 sts=2 et
 autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
@@ -188,16 +138,10 @@ autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 "
 """"""""""""""""""""""""""""""""""""""""
 
-" fzf
-nnoremap <Leader>e :Files<CR>
-
 " NerdTree
-nnoremap <Leader>t :NERDTreeToggle<CR>
-nnoremap <Leader>y :NERDTreeFind<CR>
 let NERDTreeIgnore=['htmlcov', '__pycache__']
 
 " Tagbar
-nnoremap <Leader>o :TagbarToggle<CR>
 let g:tagbar_autofocus=1
 let g:tagbar_sort=0
 
@@ -209,9 +153,6 @@ let g:ycm_complete_in_comments=1
 let g:ycm_complete_in_strings=1
 let g:ycm_autoclose_preview_window_after_insertion=1
 let g:ycm_python_binary_path='python'
-" TODO: rework all leader mappings
-" TODO: find a mapping for this
-map <leader>p :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_semantic_triggers =  {
     \   'c' : ['->', '.'],
     \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
@@ -230,21 +171,7 @@ let g:ycm_semantic_triggers =  {
 
 
 " Ack
-nnoremap <Leader>f :Ack!<Space>
 let g:ackprg = 'ag --vimgrep'
-
-" vim-fugitive
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gvdiff<CR>
-nnoremap <Leader>gw :Gwrite 
-nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gpu :Gpush<CR>
-nnoremap <Leader>gul :Gpull<CR>
-nnoremap <Leader>grm :Gremove<CR>
-nnoremap <Leader>gmv :Gmove 
-nnoremap <Leader>gre :Gread<CR>
-nnoremap <Leader>gb :Gbrowse<CR>
-nnoremap <Leader>gl :Glog<CR>
 
 " vim-gitgutter
 set updatetime=250
@@ -258,8 +185,6 @@ let g:gitgutter_sign_modified_removed = '∙'
 " Ale
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
-nmap <silent> [e <Plug>(ale_previous_wrap)
-nmap <silent> ]e <Plug>(ale_next_wrap)
 let g:ale_python_flake8_args = '--ignore=E501,E402'
 
 " Lightline
@@ -304,8 +229,73 @@ function! LightlineLinterOK() abort
   return l:counts.total == 0 ? '✓' : ''
 endfunction
 
-" UtilSnips
-let g:UltiSnipsExpandTrigger       = "<leader>ss"
-let g:UltiSnipsJumpForwardTrigger  = "<leader>ss"
+""""""""""""""""""""""""""""""""""""""""
+"
+" Keymaps
+"
+""""""""""""""""""""""""""""""""""""""""
+
+" Follow this leader
+let mapleader=','
+
+" Searching
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap <leader>/ :noh<cr>
+
+" File navigation <leader>f
+nnoremap <Leader>ff :Files<CR>
+nnoremap <Leader>fw :w<CR>
+nnoremap <Leader>fq :q<CR>
+nnoremap <Leader>ft :NERDTreeToggle<CR>
+
+" Split navigation
+noremap <Leader>x :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
+" Buffer navigation <leader>b
+noremap <Leader>bb :Buffer<CR>
+noremap <Leader>bc :BD<CR>
+noremap <Leader>bn :bn<CR>
+noremap <Leader>bp :bp<CR>
+
+" Code navigation <leader>c
+nnoremap <Leader>ct :TagbarToggle<CR>
+nnoremap <Leader>cg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <Leader>cf :Ack!<Space>
+
+" Git <leader>g
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gvdiff<CR>
+nnoremap <Leader>gw :Gwrite 
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gpu :Gpush<CR>
+nnoremap <Leader>gul :Gpull<CR>
+nnoremap <Leader>grm :Gremove<CR>
+nnoremap <Leader>gmv :Gmove 
+nnoremap <Leader>gre :Gread<CR>
+nnoremap <Leader>gb :Gbrowse<CR>
+nnoremap <Leader>gl :Glog<CR>
+nnoremap <silent> <leader>g[ <Plug>(ale_previous_wrap)
+nnoremap <silent> <leader>g] <Plug>(ale_next_wrap)
+
+" Snippets <leader>s
+let g:UltiSnipsExpandTrigger = "<leader>ss"
+let g:UltiSnipsJumpForwardTrigger = "<leader>ss"
 let g:UltiSnipsJumpBackwardTrigger = "<leader>sp"
-let g:UltiSnipsListSnippets        = "<leader>sl"
+let g:UltiSnipsListSnippets = "<leader>sl"
+
+" Maintain visual mode after shifting
+vmap < <gv
+vmap > >gv
+
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Line inserts in normal mode
+nnoremap <CR> o<ESC>
