@@ -37,7 +37,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
-Plug 'morhetz/gruvbox'
+Plug 'chriskempson/base16-vim'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
@@ -46,6 +46,9 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
+" Python
+Plug 'python-mode/python-mode'
 
 " Html
 Plug 'valloric/MatchTagAlways'
@@ -83,9 +86,11 @@ set modelines=10
 autocmd! bufwritepost .vimrc source %
 
 " Colors
+let g:base16_shell_path="$HOME/.config/base16-shell/scripts/base16-google-dark.sh"
+let base16colorspace="256"
 set t_Co=256
-colorscheme gruvbox
 set background=dark
+colorscheme base16-google-dark
 
 " Cursorline
 set cursorline
@@ -165,7 +170,7 @@ let g:ycm_semantic_triggers =  {
     \   'ruby' : ['.', '::'],
     \   'lua' : ['.', ':'],
     \   'erlang' : [':'],
-    \   'python' : ['.', 'import ', 'def '],
+    \   'python' : ['.', 're!import.+', 'from ', 'def '],
     \   'html,htmldjango' : [' ', '<'],
     \ }
 
@@ -228,6 +233,16 @@ function! LightlineLinterOK() abort
   let l:all_non_errors = l:counts.total - l:all_errors
   return l:counts.total == 0 ? '✓' : ''
 endfunction
+
+" polygot
+let g:polyglot_disabled = ['python']
+
+" python-mode
+let g:pymode_python = 'python3'
+let g:pymode_syntax = 1
+let g:pymode_folding = 0
+let g:pymode_lint = 0
+let g:pymode_rope = 0
 
 """"""""""""""""""""""""""""""""""""""""
 "
