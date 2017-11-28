@@ -242,7 +242,8 @@ let g:pymode_python = 'python3'
 let g:pymode_syntax = 1
 let g:pymode_folding = 0
 let g:pymode_lint = 0
-let g:pymode_rope = 0
+let g:pymode_rope = 1
+let g:pymode_rope_show_doc_bind = 'K'
 
 """"""""""""""""""""""""""""""""""""""""
 "
