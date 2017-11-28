@@ -243,7 +243,6 @@ let g:pymode_syntax = 1
 let g:pymode_folding = 0
 let g:pymode_lint = 0
 let g:pymode_rope = 1
-let g:pymode_rope_show_doc_bind = 'K'
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -284,6 +283,7 @@ nnoremap <Leader>ct :TagbarToggle<CR>
 nnoremap <Leader>cg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <Leader>cf :Ack!<Space>
 let g:pymode_breakpoint_bind = '<leader>cb'
+let g:pymode_rope_show_doc_bind = 'K'
 
 " Git <leader>g
 nnoremap <Leader>gs :Gstatus<CR>
