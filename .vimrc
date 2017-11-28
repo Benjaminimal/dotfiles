@@ -283,6 +283,7 @@ noremap <Leader>bp :bp<CR>
 nnoremap <Leader>ct :TagbarToggle<CR>
 nnoremap <Leader>cg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <Leader>cf :Ack!<Space>
+let g:pymode_breakpoint_bind = '<leader>cb'
 
 " Git <leader>g
 nnoremap <Leader>gs :Gstatus<CR>
