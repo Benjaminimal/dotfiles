@@ -135,7 +135,6 @@ autocmd FileType yaml setlocal ts=2 sw=2 sts=2 et
 autocmd FileType html setlocal ts=2 sw=2 sts=2 et
 autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
 autocmd FileType css setlocal ts=2 sw=2 sts=2 et
-autocmd FileType javascript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 
 """"""""""""""""""""""""""""""""""""""""
@@ -298,8 +297,8 @@ nnoremap <Leader>gmv :Gmove
 nnoremap <Leader>gre :Gread<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
 nnoremap <Leader>gl :Glog<CR>
-nnoremap <silent> <leader>g[ <Plug>(ale_previous_wrap)
-nnoremap <silent> <leader>g] <Plug>(ale_next_wrap)
+nmap <silent> [e <Plug>(ale_previous_wrap)
+nmap <silent> ]e <Plug>(ale_next_wrap)
 
 " Snippets <leader>s
 let g:UltiSnipsExpandTrigger = "<leader>ss"
