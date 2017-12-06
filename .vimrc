@@ -327,3 +327,18 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Line inserts in normal mode
 nnoremap <CR> o<ESC>
+
+""""""""""""""""""""""""""""""""""""""""
+"
+" Functions
+"
+""""""""""""""""""""""""""""""""""""""""
+
+" Writing Prose
+function ProseMode()
+    set formatoptions=aw2tq
+    setlocal spell spelllang=en_gb
+    nnoremap \s eas<C-X><C-S>
+endfu
+com! Prose call ProseMode()
+autocmd BufEnter *.txt call ProseMode()
