@@ -86,6 +86,14 @@ BASE16_SHELL=$HOME/.config/base16-shell/
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# Virtualenv Wrapper Settings
+VENV_WRAPPER=~/.local/bin/virtualenvwrapper.sh
+if [[ -e $VENV_WRAPPER ]]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/Projects
+    source $VENV_WRAPPER
+fi
+
 # Include local settings
 if [ -f $HOME/.zsh_local ]; then
     . $HOME/.zsh_local
