@@ -135,6 +135,7 @@ autocmd FileType yaml setlocal ts=2 sw=2 sts=2 et
 autocmd FileType html setlocal ts=2 sw=2 sts=2 et
 autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
 autocmd FileType css setlocal ts=2 sw=2 sts=2 et
+autocmd FileType javascript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 
 """"""""""""""""""""""""""""""""""""""""
@@ -173,6 +174,17 @@ let g:ycm_semantic_triggers =  {
     \   'python' : ['.', 're!import.+', 'from ', 'def '],
     \   'html,htmldjango' : [' ', '<'],
     \ }
+let g:ycm_filetype_blacklist = {
+    \ 'tagbar' : 1,
+    \ 'qf' : 1,
+    \ 'notes' : 1,
+    \ 'markdown' : 1,
+    \ 'unite' : 1,
+    \ 'vimwiki' : 1,
+    \ 'pandoc' : 1,
+    \ 'infolog' : 1,
+    \ 'mail' : 1
+    \}
 
 
 " Ack
@@ -316,3 +328,18 @@ vnoremap K :m '<-2<CR>gv=gv
 
 " Line inserts in normal mode
 nnoremap <CR> o<ESC>
+
+""""""""""""""""""""""""""""""""""""""""
+"
+" Functions
+"
+""""""""""""""""""""""""""""""""""""""""
+
+" Writing Prose
+function ProseMode()
+    set formatoptions=aw2tq
+    setlocal spell spelllang=en_gb
+    nnoremap \s eas<C-X><C-S>
+endfu
+com! Prose call ProseMode()
+autocmd BufEnter *.txt call ProseMode()
