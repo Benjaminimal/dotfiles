@@ -86,7 +86,6 @@ set modelines=10
 autocmd! bufwritepost .vimrc source %
 
 " Colors
-let g:base16_shell_path="$HOME/.config/base16-shell/scripts/base16-google-dark.sh"
 let base16colorspace="256"
 set t_Co=256
 set background=dark
