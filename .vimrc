@@ -342,4 +342,5 @@ function ProseMode()
     nnoremap \s eas<C-X><C-S>
 endfu
 com! Prose call ProseMode()
-autocmd BufEnter *.txt call ProseMode()
+" TODO: find a way to call und undo this. Maybe a keybind
+" autocmd BufEnter *.txt call ProseMode()
