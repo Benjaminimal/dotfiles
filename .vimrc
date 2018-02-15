@@ -286,6 +286,7 @@ noremap <C-h> <C-w>h
 " Buffer navigation <leader>b
 noremap <Leader>bb :Buffer<CR>
 noremap <Leader>bc :BD<CR>
+noremap <Leader>bC :bd<CR>
 noremap <Leader>bn :bn<CR>
 noremap <Leader>bp :bp<CR>
 
