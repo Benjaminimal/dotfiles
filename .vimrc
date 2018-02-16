@@ -255,6 +255,9 @@ let g:pymode_folding = 0
 let g:pymode_lint = 0
 let g:pymode_rope = 1
 
+" auto-pairs
+autocmd FileType htmldjango let g:AutoPairs['%']='%'
+
 """"""""""""""""""""""""""""""""""""""""
 "
 " Keymaps
