@@ -256,7 +256,11 @@ let g:pymode_lint = 0
 let g:pymode_rope = 1
 
 " auto-pairs
-autocmd FileType htmldjango let g:AutoPairs['%']='%'
+function SetHtmldjangoAutoPairs()
+    let b:AutoPairs = deepcopy(g:AutoPairs)
+    let b:AutoPairs['%'] = '%'
+endfunction
+autocmd FileType htmldjango call SetHtmldjangoAutoPairs()
 
 """"""""""""""""""""""""""""""""""""""""
 "
