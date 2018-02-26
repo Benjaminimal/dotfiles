@@ -172,6 +172,7 @@ let g:ycm_semantic_triggers =  {
     \   'erlang' : [':'],
     \   'python' : ['.', 're!import.+', 'from ', 'def '],
     \   'html,htmldjango' : [' ', '<'],
+    \   'css' : ['re!^\s{2}', 're!:\s+'],
     \ }
 let g:ycm_filetype_blacklist = {
     \ 'tagbar' : 1,
