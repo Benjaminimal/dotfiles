@@ -46,6 +46,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'lervag/vimtex'
 
 " Python
 Plug 'python-mode/python-mode'
@@ -136,6 +137,7 @@ autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
 autocmd FileType css setlocal ts=2 sw=2 sts=2 et
 autocmd FileType javascript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
+autocmd FileType tex setlocal ts=2 sw=2 sts=2 et
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -174,6 +176,7 @@ let g:ycm_semantic_triggers =  {
     \   'html,htmldjango' : [' ', '<'],
     \   'css' : ['re!^\s{2}', 're!:\s+'],
     \ }
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 let g:ycm_filetype_blacklist = {
     \ 'tagbar' : 1,
     \ 'qf' : 1,
@@ -247,7 +250,10 @@ function! LightlineLinterOK() abort
 endfunction
 
 " polygot
-let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = [
+    \'python',
+    \'latex',
+    \]
 
 " python-mode
 let g:pymode_python = 'python3'
@@ -262,6 +268,15 @@ function SetHtmldjangoAutoPairs()
     let b:AutoPairs['%'] = '%'
 endfunction
 autocmd FileType htmldjango call SetHtmldjangoAutoPairs()
+au FileType tex let b:AutoPairs = {
+        \   "(": ")",
+        \   "{": "}",
+        \   "[": "]",
+        \   "'": "'",
+        \   '"': '"',
+        \   "$": "$"
+        \}
+
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -271,6 +286,7 @@ autocmd FileType htmldjango call SetHtmldjangoAutoPairs()
 
 " Follow this leader
 let mapleader=','
+let maplocalleader='\'
 
 " Searching
 nnoremap n nzzzv
@@ -337,6 +353,10 @@ vnoremap K :m '<-2<CR>gv=gv
 " Line inserts in normal mode
 nnoremap <CR> o<ESC>
 
+" vimtex
+let g:tex_flavor = "tex"
+au FileType tex imap <buffer> ]] <CR><plug>(vimtex-delim-close)<ESC>O
+
 """"""""""""""""""""""""""""""""""""""""
 "
 " Functions
@@ -351,4 +371,3 @@ function ProseMode()
 endfu
 com! Prose call ProseMode()
 " TODO: find a way to call und undo this. Maybe a keybind
-" autocmd BufEnter *.txt call ProseMode()
