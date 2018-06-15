@@ -47,6 +47,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'lervag/vimtex'
+Plug 'vim-scripts/MatlabFilesEdition'
 
 " Python
 Plug 'python-mode/python-mode'
@@ -138,6 +139,7 @@ autocmd FileType css setlocal ts=2 sw=2 sts=2 et
 autocmd FileType javascript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType tex setlocal ts=2 sw=2 sts=2 et
+autocmd FileType matlab setlocal ts=2 sw=2 sts=2 et
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -174,7 +176,7 @@ let g:ycm_semantic_triggers =  {
     \   'erlang' : [':'],
     \   'python' : ['.', 're!import.+', 'from ', 'def '],
     \   'html,htmldjango' : [' ', '<'],
-    \   'css' : ['re!^\s{2}', 're!:\s+'],
+    \   'css' : ['re!^\s{2,}', 're!:\s+'],
     \ }
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 let g:ycm_filetype_blacklist = {
@@ -276,6 +278,9 @@ au FileType tex let b:AutoPairs = {
         \   '"': '"',
         \   "$": "$"
         \}
+
+" commentary
+au FileType matlab setlocal commentstring=\%\ %s
 
 
 """"""""""""""""""""""""""""""""""""""""
