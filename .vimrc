@@ -55,6 +55,10 @@ Plug 'python-mode/python-mode'
 " Html
 Plug 'valloric/MatchTagAlways'
 Plug 'sukima/xmledit'
+Plug 'mattn/emmet-vim'
+
+" Css
+Plug 'ap/vim-css-color'
 
 " Javascript
 Plug 'ternjs/tern_for_vim'
@@ -137,6 +141,7 @@ autocmd FileType html setlocal ts=2 sw=2 sts=2 et
 autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
 autocmd FileType css setlocal ts=2 sw=2 sts=2 et
 autocmd FileType javascript setlocal ts=2 sw=2 sts=2 et
+autocmd FileType json setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType tex setlocal ts=2 sw=2 sts=2 et
 autocmd FileType matlab setlocal ts=2 sw=2 sts=2 et
