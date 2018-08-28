@@ -28,7 +28,6 @@ autocmd! bufwritepost .vimrc source %
 let base16colorspace="256"
 set t_Co=256
 set background=dark
-colorscheme base16-google-dark
 
 " Cursorline
 set cursorline
