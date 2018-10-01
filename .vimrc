@@ -46,8 +46,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'lervag/vimtex'
-Plug 'vim-scripts/MatlabFilesEdition'
 
 " Python
 Plug 'python-mode/python-mode'
@@ -62,6 +60,12 @@ Plug 'ap/vim-css-color'
 
 " Javascript
 Plug 'ternjs/tern_for_vim'
+
+" LaTeX
+Plug 'lervag/vimtex'
+
+" Matlab
+Plug 'vim-scripts/MatlabFilesEdition'
 
 call plug#end()
 
