@@ -149,6 +149,7 @@ autocmd FileType json setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType tex setlocal ts=2 sw=2 sts=2 et
 autocmd FileType matlab setlocal ts=2 sw=2 sts=2 et
+autocmd FileType haskell setlocal ts=2 sw=2 sts=2 et
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -368,6 +369,7 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap <CR> o<ESC>
 
 " vimtex
+let g:vimtex_syntax_enabled=0
 let g:tex_flavor = "tex"
 au FileType tex imap <buffer> ]] <CR><plug>(vimtex-delim-close)<ESC>O
 
