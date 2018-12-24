@@ -103,10 +103,8 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias capsesc="setxkbmap -option \"caps:swapescape\""
 alias se="source .venv/bin/activate||source .env/bin/activate||source env/bin/activate||source venv/bin/activate"
 alias qe="deactivate"
@@ -116,4 +114,15 @@ alias wd="cd ~/Projects/gefco-simple;se"
 # Some env vars
 export VISUAL="vim"
 
+# Custom Commands
+mping(){ ping $@|awk -F'[=\ ]' '/time=/{t=$(NF-1);f=2000-14*log(t^18);c="play -q -n synth 1 pl "f"&";print $0;system(c)}';}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# AspectJ
+export PATH=$PATH:/home/benjaminimal/aspectj1.9/bin
+export CLASSPATH=$CLASSPATH:/home/benjaminimal/aspectj1.9/lib/aspectjrt.jar
+
+# Disable zsh time in favor of builtin command
+disable -r time
+alias time='time -p'
