@@ -46,6 +46,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'airblade/vim-gitgutter'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'simeji/winresizer'
 
 " Python
 Plug 'python-mode/python-mode'
