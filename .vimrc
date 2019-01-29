@@ -65,6 +65,9 @@ Plug 'ternjs/tern_for_vim'
 " LaTeX
 Plug 'lervag/vimtex'
 
+" Markdown
+Plug 'shime/vim-livedown'
+
 " Matlab
 Plug 'vim-scripts/MatlabFilesEdition'
 
@@ -377,7 +380,12 @@ let g:vimtex_syntax_enabled=0
 let g:tex_flavor = "tex"
 au FileType tex imap <buffer> ]] <CR><plug>(vimtex-delim-close)<ESC>O
 
-""""""""""""""""""""""""""""""""""""""""
+" livedown
+autocmd FileType markdown nnoremap <buffer> <leader>ll :LivedownPreview<CR>
+autocmd FileType markdown nnoremap <buffer> <leader>ls :LivedownKill<CR>
+autocmd FileType markdown nnoremap <buffer> <leader>lt :LivedownToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""
 "
 " Functions
 "
