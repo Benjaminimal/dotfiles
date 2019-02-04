@@ -36,7 +36,7 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --ts-completer --java-completer' }
 Plug 'chriskempson/base16-vim'
 Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
@@ -59,10 +59,7 @@ Plug 'mattn/emmet-vim'
 " Css
 Plug 'ap/vim-css-color'
 
-" Javascript
-Plug 'ternjs/tern_for_vim'
-
-" LaTeX
+"  LaTeX
 Plug 'lervag/vimtex'
 
 " Markdown
@@ -148,6 +145,7 @@ autocmd FileType yaml setlocal ts=2 sw=2 sts=2 et
 autocmd FileType html setlocal ts=2 sw=2 sts=2 et
 autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
 autocmd FileType css setlocal ts=2 sw=2 sts=2 et
+autocmd FileType scss setlocal ts=2 sw=2 sts=2 et
 autocmd FileType javascript setlocal ts=2 sw=2 sts=2 et
 autocmd FileType json setlocal ts=2 sw=2 sts=2 et
 autocmd FileType typescript setlocal ts=2 sw=2 sts=2 et
