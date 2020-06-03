@@ -53,18 +53,21 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'honza/vim-snippets'
 
 " Python
-Plug 'python-mode/python-mode'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 " LaTeX
 Plug 'lervag/vimtex'
 
 " Html
-" Plug 'valloric/MatchTagAlways'
+Plug 'valloric/MatchTagAlways'
 " Plug 'sukima/xmledit'
-" Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 
 " Css
 Plug 'ap/vim-css-color'
+
+" MapTool Macros
+Plug 'rkathey/mtgvim'
 
 call plug#end()
 
@@ -98,6 +101,9 @@ autocmd! bufwritepost .vimrc source %
 set termguicolors
 set background=dark
 colorscheme base16-google-dark
+
+" Line width ruler
+set colorcolumn=80
 
 " Cursorline
 set cursorline
@@ -140,6 +146,7 @@ set splitright
 " Filetypes
 autocmd FileType yaml setlocal ts=2 sw=2 sts=2 et
 autocmd FileType html setlocal ts=2 sw=2 sts=2 et
+autocmd FileType xml setlocal ts=2 sw=2 sts=2 et
 autocmd FileType htmldjango setlocal ts=2 sw=2 sts=2 et
 autocmd FileType css setlocal ts=2 sw=2 sts=2 et
 autocmd FileType scss setlocal ts=2 sw=2 sts=2 et
@@ -151,6 +158,7 @@ autocmd FileType matlab setlocal ts=2 sw=2 sts=2 et
 autocmd FileType haskell setlocal ts=2 sw=2 sts=2 et
 autocmd FileType sql setlocal ts=2 sw=2 sts=2 et
 autocmd FileType pgsql setlocal ts=2 sw=2 sts=2 et
+autocmd FileType c setlocal ts=2 sw=2 sts=2 et
 autocmd BufNewFile,BufRead *.sql set syntax=pgsql
 
 """"""""""""""""""""""""""""""""""""""""
@@ -193,8 +201,9 @@ autocmd FileType vim call SetVimAutoPairs()
 let g:fzf_layout = { 'down': '~20%' }
 
 " YCM
+let g:ycm_confirm_extra_conf=0
 let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_use_ultisnips_completer=1
+let g:ycm_use_ultisnips_completer=0
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_complete_in_comments=1
 let g:ycm_complete_in_strings=1
@@ -216,12 +225,17 @@ let g:ycm_semantic_triggers =  {
     \   'html,htmldjango' : [' ', '<'],
     \   'css' : ['re!^\s{2,}', 're!:\s+'],
     \ }
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+if !exists('g:ycm_semantic_triggers')
+let g:ycm_semantic_triggers = {}
+endif
+if !exists('g:ycm_semantic_triggers')
+    let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 let g:ycm_filetype_blacklist = {
     \ 'tagbar' : 1,
     \ 'qf' : 1,
     \ 'notes' : 1,
-    \ 'markdown' : 1,
     \ 'unite' : 1,
     \ 'vimwiki' : 1,
     \ 'pandoc' : 1,
@@ -233,6 +247,7 @@ let g:ycm_filetype_blacklist = {
 let g:ackprg = 'ag --vimgrep'
 
 " Ale
+let g:ale_c_parse_makefile=1
 let g:ale_sign_warning = '▲'
 let g:ale_sign_error = '✗'
 let g:ale_python_flake8_args = '--ignore=E501,E402'
@@ -244,6 +259,7 @@ let g:ale_fixers = {
             \ 'scss': ['prettier'],
             \ 'json': ['fixjson'],
             \ 'yaml': ['prettier'],
+            \ 'markdown': ['prettier'],
             \ 'c': ['clang-format']
             \}
 
@@ -365,3 +381,52 @@ vmap > >gv
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+""""""""""""""""""""""""""""""""""""""""
+"
+" Custom Filetypes
+"
+""""""""""""""""""""""""""""""""""""""""
+
+" DLV
+autocmd BufEnter *.dl,*.hyp,*.obs setlocal filetype=dlv
+autocmd FileType dlv setlocal commentstring=%\ %s
+
+""""""""""""""""""""""""""""""""""""""""
+"
+" Modes
+"
+""""""""""""""""""""""""""""""""""""""""
+
+let g:spell_mode = 0
+
+func! SpellMode()
+    if g:spell_mode
+        set complete&
+        call SpellLangUnset()
+        set spell&
+        let g:spell_mode = 0
+    else
+        set spell
+        call SpellLangEn()
+        set complete+=k
+        let g:spell_mode = 1
+    endif
+endfunction
+func! SpellLangUnset()
+    set spelllang&
+endfunc
+func! SpellLangDe()
+    set spelllang=de_at
+endfunc
+func! SpellLangEn()
+    set spelllang=en_us
+endfunc
+
+" Spell Mode
+noremap <Leader>st :call SpellMode()<CR>
+noremap <Leader>sd :call SpellLangDe()<CR>
+noremap <Leader>se :call SpellLangEn()<CR>
+noremap <Leader>ss z=
+noremap <Leader>sn ]s
+noremap <Leader>sp [s

@@ -65,6 +65,9 @@ ZSH_THEME="ys"
 plugins=(
     git
     colored-man-pages
+    mvn
+    docker
+    docker-compose
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -115,15 +118,69 @@ alias time='time -p'
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias calc="python3 -i -c 'import math as m'"
+alias calc=ghci
 
 # User installed programms
 PROGRAMMS=$HOME/Software
 
+# Functions
+# Pretty print json
+pjson() {
+    echo "${1}" | python -m json.tool
+}
+
+cjson() {
+    curl "${@}" | python -m json.tool
+}
+
+remember() { [[ $# -eq 2 ]] || exit; echo "alias ${1}='${2}'" >> ~/.zshrc; source ~/.zshrc }
+
+ismystudent () {
+    grep "${1}" ~/Uni/semester-6/tutor-einfuehrung-in-die-programmierung-2/uebungen/git_home/org/tutorinnen/mo11a/students.csv ~/Uni/semester-6/tutor-einfuehrung-in-die-programmierung-2/uebungen/git_home/org/tutorinnen/di11a/students.csv
+}
+
 # Audio Ping
 mping(){ ping $@|awk -F'[=\ ]' '/time=/{t=$(NF-1);f=2000-14*log(t^18);c="play -q -n synth 1 pl "f"&";print $0;system(c)}';}
+
+# Count words in pdf
+function pdfwc {
+    FLAGS=""
+    if [ $# -ne 2 ]; then
+        FLAGS="-w"
+    else
+        FLAGS=$2
+    fi
+    pdftotext $1 - | wc $FLAGS
+}
+
+# Generate password
+function mkpass {
+    eval "python3 -c 'import string as s; import random as r; chars = s.ascii_letters + s.digits; print(\"\".join([r.choice(chars) for _ in range(${1})]))'"
+}
+
+# url(de|en)code
+alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plus(sys.argv[1]))"'
 
 # Fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Karma test
+export CHROME_BIN=$(which chromium)
+
 # IntelliJ
 export PATH=$PATH:$PROGRAMMS/intellij/bin
+
+# Zsh completion
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
+# EP2 Tool
+export PY_USER_BIN=$(python -c 'import site; print(site.USER_BASE + "/bin")')
+export PATH=$PY_USER_BIN:$PATH
+export EP2_GIT_HOME=~/Uni/semester-6/tutor-einfuehrung-in-die-programmierung-2/uebungen/git_home
+export EP2_IDEA_EVAL_PATH=~/Uni/semester-6/tutor-einfuehrung-in-die-programmierung-2/uebungen/idea
+
+# Logikprogrammierung und Constraints
+alias gupu="ssh -tt -X complang_lp t390 gupu -geometry 107x43+-2--1 -font '-*-lucida*typewriter-med*-r-normal-sans-14-*-*-*-*-*-iso8859-1'"
