@@ -398,6 +398,7 @@ autocmd FileType dlv setlocal commentstring=%\ %s
 "
 """"""""""""""""""""""""""""""""""""""""
 
+autocmd FileType mail call SpellMode()
 let g:spell_mode = 0
 
 func! SpellMode()
