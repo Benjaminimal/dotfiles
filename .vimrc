@@ -41,7 +41,7 @@ Plug 'mileszs/ack.vim'
 Plug 'majutsushi/tagbar'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --ts-completer --java-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --ts-completer --java-completer' }
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -57,6 +57,10 @@ Plug 'python-mode/python-mode', { 'branch': 'develop' }
 
 " LaTeX
 Plug 'lervag/vimtex'
+
+" Markdown
+" TODO: add keymaps for this :MarkdownPreviw
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 " Html
 Plug 'valloric/MatchTagAlways'
@@ -201,47 +205,47 @@ autocmd FileType vim call SetVimAutoPairs()
 let g:fzf_layout = { 'down': '~20%' }
 
 " YCM
-let g:ycm_confirm_extra_conf=0
-let g:ycm_collect_identifiers_from_tags_files=1
-let g:ycm_use_ultisnips_completer=0
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_complete_in_comments=1
-let g:ycm_complete_in_strings=1
-let g:ycm_autoclose_preview_window_after_insertion=1
-let g:ycm_python_binary_path='python3'
-let g:ycm_semantic_triggers =  {
-    \   'c' : ['->', '.'],
-    \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-    \             're!\[.*\]\s'],
-    \   'ocaml' : ['.', '#'],
-    \   'cpp,objcpp' : ['->', '.', '::'],
-    \   'perl' : ['->'],
-    \   'php' : ['->', '::'],
-    \   'cs,java,javascript,typescript,d,perl6,scala,vb,elixir,go' : ['.'],
-    \   'ruby' : ['.', '::'],
-    \   'lua' : ['.', ':'],
-    \   'erlang' : [':'],
-    \   'python' : ['.', 're!import.+', 'from ', 'def '],
-    \   'html,htmldjango' : [' ', '<'],
-    \   'css' : ['re!^\s{2,}', 're!:\s+'],
-    \ }
-if !exists('g:ycm_semantic_triggers')
-let g:ycm_semantic_triggers = {}
-endif
-if !exists('g:ycm_semantic_triggers')
-    let g:ycm_semantic_triggers = {}
-endif
-au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
-let g:ycm_filetype_blacklist = {
-    \ 'tagbar' : 1,
-    \ 'qf' : 1,
-    \ 'notes' : 1,
-    \ 'unite' : 1,
-    \ 'vimwiki' : 1,
-    \ 'pandoc' : 1,
-    \ 'infolog' : 1,
-    \ 'mail' : 1
-    \}
+" let g:ycm_confirm_extra_conf=0
+" let g:ycm_collect_identifiers_from_tags_files=1
+" let g:ycm_use_ultisnips_completer=0
+" let g:ycm_seed_identifiers_with_syntax=1
+" let g:ycm_complete_in_comments=1
+" let g:ycm_complete_in_strings=1
+" let g:ycm_autoclose_preview_window_after_insertion=1
+" let g:ycm_python_binary_path='python3'
+" let g:ycm_semantic_triggers =  {
+"     \   'c' : ['->', '.'],
+"     \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+"     \             're!\[.*\]\s'],
+"     \   'ocaml' : ['.', '#'],
+"     \   'cpp,objcpp' : ['->', '.', '::'],
+"     \   'perl' : ['->'],
+"     \   'php' : ['->', '::'],
+"     \   'cs,java,javascript,typescript,d,perl6,scala,vb,elixir,go' : ['.'],
+"     \   'ruby' : ['.', '::'],
+"     \   'lua' : ['.', ':'],
+"     \   'erlang' : [':'],
+"     \   'python' : ['.', 're!import.+', 'from ', 'def '],
+"     \   'html,htmldjango' : [' ', '<'],
+"     \   'css' : ['re!^\s{2,}', 're!:\s+'],
+"     \ }
+" if !exists('g:ycm_semantic_triggers')
+" let g:ycm_semantic_triggers = {}
+" endif
+" if !exists('g:ycm_semantic_triggers')
+"     let g:ycm_semantic_triggers = {}
+" endif
+" au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
+" let g:ycm_filetype_blacklist = {
+"     \ 'tagbar' : 1,
+"     \ 'qf' : 1,
+"     \ 'notes' : 1,
+"     \ 'unite' : 1,
+"     \ 'vimwiki' : 1,
+"     \ 'pandoc' : 1,
+"     \ 'infolog' : 1,
+"     \ 'mail' : 1
+"     \}
 
 " Ack
 let g:ackprg = 'ag --vimgrep'
@@ -323,6 +327,10 @@ let g:pymode_rope = 1
 let g:vimtex_syntax_enabled=0
 let g:tex_flavor = "tex"
 autocmd FileType tex imap <buffer> ]] <CR><plug>(vimtex-delim-close)<ESC>O
+
+" Markdown preview
+let g:mkdp_auto_close = 0
+let g:mkdp_refresh_slow = 1
 
 """"""""""""""""""""""""""""""""""""""""
 "
