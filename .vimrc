@@ -1,3 +1,9 @@
+" polygot forces me to put this here
+let g:polyglot_disabled = [
+    \'python',
+    \'latex',
+    \]
+
 """"""""""""""""""""""""""""""""""""""""
 "
 " Vim-Plug core
@@ -35,13 +41,13 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'simeji/winresizer'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 Plug 'majutsushi/tagbar'
 Plug 'itchyny/lightline.vim'
 Plug 'w0rp/ale'
-" Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --ts-completer --java-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': 'python3 install.py --clang-completer --rust-completer' }
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -177,12 +183,6 @@ let NERDTreeIgnore=['htmlcov', '__pycache__']
 " Tagbar
 let g:tagbar_autofocus=1
 let g:tagbar_sort=0
-
-" polygot
-let g:polyglot_disabled = [
-    \'python',
-    \'latex',
-    \]
 
 " auto-pairs
 func! SetHtmldjangoAutoPairs()
