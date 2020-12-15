@@ -6,6 +6,10 @@
 
 set commentary
 
+set surround
+set exchange
+set highlightedyank
+
 """"""""""""""""""""""""""""""""""""""""
 "
 " General
@@ -82,3 +86,11 @@ vmap > >gv
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+" Fix location stack navigation
+map <C-o> <Action>(Back)
+map <C-i> <Action>(Forward)
+
+" Git hunk navigation
+map ]g <Action>(VcsShowNextChangeMarker)
+map [g <Action>(VcsShowPrevChangeMarker)
