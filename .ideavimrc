@@ -16,6 +16,9 @@ set highlightedyank
 "
 """"""""""""""""""""""""""""""""""""""""
 
+" Use system clipboard
+set clipboard+=unnamed
+
 " Line width ruler
 set colorcolumn=80
 
