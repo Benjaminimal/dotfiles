@@ -62,6 +62,11 @@ nnoremap <leader>/ :noh<cr>
 
 " File navigation <leader>f
 map <Leader>ff <Action>(GotoFile)
+map <Leader>fs <Action>(GotoSymbol)
+map <Leader>fc <Action>(GotoClass)
+map <Leader>fa <Action>(GotoAction)
+map <Leader>f/ <Action>(FindInPath)
+
 nnoremap <Leader>fw :w<CR>
 nnoremap <Leader>fq :q<CR>
 " nnoremap <Leader>ft :NERDTreeToggle<CR>
