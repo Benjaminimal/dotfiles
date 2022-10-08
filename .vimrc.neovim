@@ -1,0 +1,179 @@
+"""""""""""""""""""""""""""""""""""""""
+"
+" Plugins
+"
+""""""""""""""""""""""""""""""""""""""""
+
+call plug#begin()
+
+
+" Find files
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'jesseleite/vim-agriculture'
+
+" Autopairs
+
+call plug#end()
+
+"""""""""""""""""""""""""""""""""""""""
+"
+" Plugin Configuration
+"
+""""""""""""""""""""""""""""""""""""""""
+
+" fzf
+let g:fzf_layout = { 'down': '~40%' }
+let $FZF_DEFAULT_OPTS="--bind 
+            \ctrl-y:preview-up
+            \,ctrl-e:preview-down,
+            \ctrl-b:preview-page-up
+            \,ctrl-f:preview-page-down,
+            \ctrl-u:preview-half-page-up
+            \,ctrl-d:preview-half-page-down,
+            \shift-up:preview-top
+            \,shift-down:preview-bottom"
+
+
+""""""""""""""""""""""""""""""""""""""""
+"
+" General
+"
+""""""""""""""""""""""""""""""""""""""""
+
+" Autoreload config on write
+autocmd! bufwritepost .vimrc source ~/.config/nvim/init.vim
+
+" Reload config
+command Refresh source ~/.config/nvim/init.vim
+
+" We will have lots of issues without this
+filetype plugin indent on
+syntax enable
+set clipboard=unnamed,unnamedplus
+
+" File settings
+set noswapfile
+set nobackup
+set hidden
+set autoread
+set fileformats=unix,dos,mac
+set encoding=utf-8
+
+" Modelines
+set modeline
+set modelines=10
+
+" Split navigation
+set splitbelow
+set splitright
+
+" Numbers!
+set number
+
+" Tab config
+set expandtab tabstop=4 softtabstop=4 shiftwidth=4
+set relativenumber
+
+" Backspace config
+set backspace=indent,eol,start
+
+" Cursorline
+set cursorline
+
+" Remember cursor position
+augroup vimrc-remember-cursor-position
+  autocmd!
+  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+
+" Highlight yanked text
+augroup highlight_yank
+    autocmd!
+    au TextYankPost * silent! lua vim.highlight.on_yank{higroup="IncSearch", timeout=700}
+augroup END
+
+" Scroll offset
+set scrolloff=3
+
+" Searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Split navigation
+set splitbelow
+set splitright
+
+""""""""""""""""""""""""""""""""""""""""
+"
+" Keymaps
+"
+""""""""""""""""""""""""""""""""""""""""
+
+" Follow this leader
+let mapleader=','
+let maplocalleader='\'
+
+" Searching
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap <leader>/ :noh<cr>
+
+" File navigation <leader>f
+nnoremap <Leader>fw :w<CR>
+nnoremap <Leader>fq :q<CR>
+nnoremap <Leader>fQ :q!<CR>
+" Find files
+noremap <Leader>ff :Files<CR>
+noremap <Leader>fg :GFiles<CR>
+noremap <Leader>fc :GFiles?<CR>
+noremap <Leader>fh :History<CR>
+
+" Serach <Leader>s
+noremap <Leader>ss <Plug>RgRawSearch
+vnoremap <Leader>sv <Plug>RgRawVisualSelection
+noremap <Leader>sw <Plug>RgRawWordUnderCursor
+noremap <Leader>st :Tags<CR>
+noremap <Leader>sf :BLines<CR>
+noremap <Leader>sb :Lines<CR>
+
+" Buffer navigation <leader>b
+noremap <Leader>bb :Buffer<CR>
+noremap <Leader>bc :bd<CR>
+noremap <Leader>bn :bn<CR>
+noremap <Leader>bp :bp<CR>
+
+" Git <leader>g
+noremap <Leader>gg :Commits<CR>
+noremap <Leader>gh :BCommits<CR>
+
+" Split navigation
+noremap <Leader>x :<C-u>split<CR>
+noremap <Leader>v :<C-u>vsplit<CR>
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+noremap <C-h> <C-w>h
+
+" Vim config <Leader>v ?
+noremap <Leader>vc :Commands<CR>
+noremap <Leader>vm :Maps<CR>
+noremap <Leader>vh :Helptags<CR>
+noremap <Leader>vr :Refresh<CR>
+
+
+" Maintain visual mode after shifting
+vmap < <gv
+vmap > >gv
+
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+"""""""""""""""""""""""""""""""""""""""
+"
+" Testing
+"
+""""""""""""""""""""""""""""""""""""""""
