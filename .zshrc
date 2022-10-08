@@ -2,17 +2,17 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="ys"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -26,8 +26,14 @@ ZSH_THEME="ys"
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
+# Uncomment the following line to automatically update without prompting.
+# DISABLE_UPDATE_PROMPT="true"
+
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -58,48 +64,51 @@ ZSH_THEME="ys"
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-    git
+    aws
     colored-man-pages
-    mvn
+    fzf
+    dotenv
+    git
+    git-flow
     docker
     docker-compose
+    vagrant
+    pip
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+SECRETS_RC=~/.secretsrc
+if [ -f $SECRETS_RC ]; then
+    source $SECRETS_RC;
+fi
 
 export PATH=$PATH:/sbin
 export PATH=$PATH:/usr/sbin
 export PATH=$PATH:$HOME/.local/bin
 
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+# No more BEEEP!
+if [ -n "$DISPLAY" ]; then
+	xset b off
+fi
 
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-# else
-  # export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+# I like neovim
+export EDITOR="nvim"
+alias vim="nvim"
+alias vi="nvim"
+alias vimdiff="nvim -d"
 
 # Virtualenv Wrapper Settings
 VENV_WRAPPER=$HOME/.local/bin/virtualenvwrapper.sh
 if [[ -e $VENV_WRAPPER ]]; then
-    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+	export VIRTUALENVWRAPPER_PYTHON=$(which python3)
     export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
     export WORKON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/Projects
@@ -110,15 +119,32 @@ fi
 disable -r time
 alias time='time -p'
 
-# User configs
-# Fzf
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# export MANPATH="/usr/local/man:$MANPATH"
 
-# Zsh completion
-fpath=(~/.zsh/completion $fpath)
-autoload -Uz compinit && compinit -i
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+export AWS_VAULT_BACKEND="file"
+
+# Needed for signed git commits
+# https://docs.github.com/en/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key
+export GPG_TTY=$(tty)
+
+# Fzf
+export FZF_COMPLETION_OPTS='--hidden'
 
 # Functions
+
 # Pretty print json
 pjson() {
     echo "${1}" | python -m json.tool
@@ -138,6 +164,8 @@ function mkpass {
     openssl rand 512 | base64 -w 0 | tr -cd '[:alnum:]._-' | head -c $1
 }
 
+
+# Aliases
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -145,6 +173,12 @@ function mkpass {
 
 alias calc="python3 -i -c 'import math as m; import random as r'"
 
+alias python="python3"
+
 # url(de|en)code
 alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
 alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plus(sys.argv[1]))"'
+
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
