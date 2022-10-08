@@ -143,7 +143,7 @@ function mkpass {
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias calc="python3 -i -c 'import math as m'"
+alias calc="python3 -i -c 'import math as m; import random as r'"
 
 # url(de|en)code
 alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
