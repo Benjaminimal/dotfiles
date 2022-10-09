@@ -37,6 +37,9 @@ Plug 'sheerun/vim-polyglot'
 " Autocompletion
 Plug 'shougo/deoplete.nvim'
 
+" Code folding
+Plug 'tmhedberg/simpylfold'
+
 " Indentaion level indicators
 Plug 'yggdroot/indentline'
 
@@ -88,6 +91,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 call deoplete#custom#option({'camel_case': v:true,})
+
+" simpylfold
+set nofoldenable
 
 """"""""""""""""""""""""""""""""""""""""
 "
