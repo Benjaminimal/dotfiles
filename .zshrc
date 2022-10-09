@@ -101,8 +101,10 @@ fi
 
 # I like neovim
 export EDITOR="nvim"
-alias vim="nvim"
+alias v="nvim"
+alias vs='nvim -S'
 alias vi="nvim"
+alias vim="nvim"
 alias vimdiff="nvim -d"
 
 # Virtualenv Wrapper Settings

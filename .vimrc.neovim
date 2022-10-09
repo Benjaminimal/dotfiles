@@ -12,7 +12,36 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jesseleite/vim-agriculture'
 
-" Autopairs
+" Navigate directories
+Plug 'preservim/nerdtree'
+Plug 'PhilRunninger/nerdtree-visual-selection'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" Sessions
+Plug 'tpope/vim-obsession'
+
+" Auto pairs
+Plug 'jiangmiao/auto-pairs'
+
+" Comments
+Plug 'tpope/vim-commentary'
+
+" Git integrations
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'airblade/vim-gitgutter'
+
+" Language support
+Plug 'sheerun/vim-polyglot'
+
+" Indentaion level indicators
+Plug 'yggdroot/indentline'
+
+" Make it pretty
+Plug 'joshdick/onedark.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -34,6 +63,23 @@ let $FZF_DEFAULT_OPTS="--bind
             \shift-up:preview-top
             \,shift-down:preview-bottom"
 
+" Auto pairs
+func! SetHtmldjangoAutoPairs()
+    let b:AutoPairs = deepcopy(g:AutoPairs)
+    let b:AutoPairs['%'] = '%'
+endfunction
+autocmd FileType htmldjango call SetHtmldjangoAutoPairs()
+
+" NERDTree
+let NERDTreeIgnore=['__pycache__']
+let g:NERDTreeGitStatusShowIgnored = 1
+
+" Gitgutter
+set updatetime=100
+
+" Airline
+let g:airline_theme='onedark'
+let g:airline#extensions#tabline#enabled = 1
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -41,8 +87,13 @@ let $FZF_DEFAULT_OPTS="--bind
 "
 """"""""""""""""""""""""""""""""""""""""
 
+" Colors
+colorscheme onedark
+
 " Autoreload config on write
 autocmd! bufwritepost .vimrc source ~/.config/nvim/init.vim
+autocmd! bufwritepost .vimrc.plugless source ~/.config/nvim/init.vim
+autocmd! bufwritepost .vimrc.neovim source ~/.config/nvim/init.vim
 
 " Reload config
 command Refresh source ~/.config/nvim/init.vim
@@ -77,6 +128,9 @@ set relativenumber
 
 " Backspace config
 set backspace=indent,eol,start
+
+" Line width ruler
+set colorcolumn=100
 
 " Cursorline
 set cursorline
@@ -122,47 +176,76 @@ nnoremap N Nzzzv
 nnoremap <leader>/ :noh<cr>
 
 " File navigation <leader>f
-nnoremap <Leader>fw :w<CR>
-nnoremap <Leader>fq :q<CR>
-nnoremap <Leader>fQ :q!<CR>
-" Find files
-noremap <Leader>ff :Files<CR>
-noremap <Leader>fg :GFiles<CR>
-noremap <Leader>fc :GFiles?<CR>
-noremap <Leader>fh :History<CR>
+nnoremap <leader>fw :w<CR>
+nnoremap <leader>fq :q<CR>
+nnoremap <leader>fQ :q!<CR>
+nnoremap <leader>ft :NERDTreeToggle<CR>
+nnoremap <leader>fo :NERDTreeFind<CR>
 
-" Serach <Leader>s
-noremap <Leader>ss <Plug>RgRawSearch
-vnoremap <Leader>sv <Plug>RgRawVisualSelection
-noremap <Leader>sw <Plug>RgRawWordUnderCursor
-noremap <Leader>st :Tags<CR>
-noremap <Leader>sf :BLines<CR>
-noremap <Leader>sb :Lines<CR>
+" Find files
+noremap <leader>ff :Files<CR>
+noremap <leader>fg :GFiles<CR>
+noremap <leader>fc :GFiles?<CR>
+noremap <leader>fh :History<CR>
+
+" Serach <leader>s
+noremap <leader>ss <Plug>RgRawSearch
+vnoremap <leader>sv <Plug>RgRawVisualSelection
+noremap <leader>sw <Plug>RgRawWordUnderCursor
+noremap <leader>st :Tags<CR>
+noremap <leader>sf :BLines<CR>
+noremap <leader>sb :Lines<CR>
 
 " Buffer navigation <leader>b
-noremap <Leader>bb :Buffer<CR>
-noremap <Leader>bc :bd<CR>
-noremap <Leader>bn :bn<CR>
-noremap <Leader>bp :bp<CR>
-
-" Git <leader>g
-noremap <Leader>gg :Commits<CR>
-noremap <Leader>gh :BCommits<CR>
+noremap <leader>bb :Buffer<CR>
+noremap <leader>bc :bd<CR>
+noremap <leader>bn :bn<CR>
+noremap <leader>bp :bp<CR>
 
 " Split navigation
-noremap <Leader>x :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
+noremap <leader>x :<C-u>split<CR>
+noremap <leader>v :<C-u>vsplit<CR>
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 noremap <C-h> <C-w>h
 
-" Vim config <Leader>v ?
-noremap <Leader>vc :Commands<CR>
-noremap <Leader>vm :Maps<CR>
-noremap <Leader>vh :Helptags<CR>
-noremap <Leader>vr :Refresh<CR>
+" Git <leader>g
+noremap <leader>gg :Git<CR>
+noremap <leader>gb :Git blame<CR>
+noremap <leader>gd :Git diff<CR>
+noremap <leader>gl :Git log<CR>
+noremap <leader>gh :GBrowse!<CR>
+vnoremap <leader>gh :'<,'>GBrowse!<CR>
 
+" TODO: find a mapping for git commit searches
+" noremap <leader>gg :Commits<CR>
+" noremap <leader>gh :BCommits<CR>
+
+" Hunks <leader>g
+noremap ]h <Plug>(GitGutterNextHunk)
+noremap [h <Plug>(GitGutterPrevHunk)
+command! Gqf GitGutterQuickFix | copen
+command! Gqfcf GitGutterQuickFixCurrentFile | copen
+noremap <leader>hl :Gqfcf<CR>
+noremap <leader>hL :Gqf<CR>
+noremap <leader>hp :GitGutterPreviewHunk<CR>
+noremap <leader>hs :GitGutterStageHunk<CR>
+noremap <leader>hu :GitGutterUndoHunk<CR>
+
+" Quickfix list <leader>q
+nnoremap <leader>qq :copen<CR>
+nnoremap <leader>qc :cclose<CR>
+
+" Vim config <leader>v ?
+noremap <leader>vv :Commands<CR>
+noremap <leader>vm :Maps<CR>
+noremap <leader>vh :Helptags<CR>
+noremap <leader>vr :Refresh<CR>
+noremap <leader>vi :PlugInstall<CR>
+noremap <leader>vi :PlugInstall<CR>
+noremap <leader>vu :PlugUpdate<CR>
+noremap <leader>vc :PlugClean<CR>
 
 " Maintain visual mode after shifting
 vmap < <gv
@@ -177,3 +260,4 @@ vnoremap K :m '<-2<CR>gv=gv
 " Testing
 "
 """"""""""""""""""""""""""""""""""""""""
+
