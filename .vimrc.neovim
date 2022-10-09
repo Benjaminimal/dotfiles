@@ -34,6 +34,9 @@ Plug 'airblade/vim-gitgutter'
 " Language support
 Plug 'sheerun/vim-polyglot'
 
+" Autocompletion
+Plug 'shougo/deoplete.nvim'
+
 " Indentaion level indicators
 Plug 'yggdroot/indentline'
 
@@ -80,6 +83,11 @@ set updatetime=100
 " Airline
 let g:airline_theme='onedark'
 let g:airline#extensions#tabline#enabled = 1
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
+call deoplete#custom#option({'camel_case': v:true,})
 
 """"""""""""""""""""""""""""""""""""""""
 "
