@@ -46,6 +46,9 @@ Plug 'tmhedberg/simpylfold'
 " Indentaion level indicators
 Plug 'yggdroot/indentline'
 
+" Python virtualenv
+Plug 'jmcantrell/vim-virtualenv'
+
 " Make it pretty
 Plug 'joshdick/onedark.vim'
 Plug 'vim-airline/vim-airline'
