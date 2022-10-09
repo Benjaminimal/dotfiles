@@ -37,6 +37,9 @@ Plug 'sheerun/vim-polyglot'
 " Autocompletion
 Plug 'shougo/deoplete.nvim'
 
+" Tagbar
+Plug 'preservim/tagbar'
+
 " Code folding
 Plug 'tmhedberg/simpylfold'
 
@@ -91,6 +94,15 @@ let g:airline#extensions#tabline#enabled = 1
 let g:deoplete#enable_at_startup = 1
 call deoplete#custom#source('_', 'matchers', ['matcher_full_fuzzy'])
 call deoplete#custom#option({'camel_case': v:true,})
+
+" tagbar
+let g:tagbar_autofocus = 1
+let g:tagbar_autoclose_netrw = 1
+let g:tagbar_sort = 1
+let g:tagbar_compact = 2
+let g:tagbar_show_tag_count = 1
+let g:tagbar_previewwin_pos = 1
+let g:tagbar_autopreview = 1
 
 " simpylfold
 set nofoldenable
@@ -246,6 +258,9 @@ noremap <leader>hL :Gqf<CR>
 noremap <leader>hp :GitGutterPreviewHunk<CR>
 noremap <leader>hs :GitGutterStageHunk<CR>
 noremap <leader>hu :GitGutterUndoHunk<CR>
+
+" Code navigation <leader>c
+nnoremap <Leader>ct :TagbarToggle<CR>
 
 " Quickfix list <leader>q
 nnoremap <leader>qq :copen<CR>
