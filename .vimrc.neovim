@@ -23,6 +23,9 @@ Plug 'tpope/vim-obsession'
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
 
+" Auto formatting
+Plug 'sbdchd/neoformat'
+
 " Comments
 Plug 'tpope/vim-commentary'
 
@@ -65,8 +68,8 @@ call plug#end()
 
 " fzf
 let g:fzf_layout = { 'down': '~40%' }
-let $FZF_DEFAULT_OPTS="--bind 
-            \ctrl-y:preview-up
+let $FZF_DEFAULT_OPTS="--bind
+            \ ctrl-y:preview-up
             \,ctrl-e:preview-down,
             \ctrl-b:preview-page-up
             \,ctrl-f:preview-page-down,
@@ -109,6 +112,15 @@ let g:tagbar_autopreview = 1
 
 " simpylfold
 set nofoldenable
+
+" neoformat
+augroup fmt
+  autocmd!
+  autocmd BufWritePre * Neoformat
+augroup END
+let g:neoformat_basic_format_trim = 1
+let g:neoformat_enabled_python = ['isort', 'black']
+let g:neoformat_run_all_formatters = 1
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -166,8 +178,8 @@ set cursorline
 
 " Remember cursor position
 augroup vimrc-remember-cursor-position
-  autocmd!
-  autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+    autocmd!
+    autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 augroup END
 
 " Highlight yanked text
