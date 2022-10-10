@@ -36,9 +36,12 @@ Plug 'airblade/vim-gitgutter'
 
 " Language support
 Plug 'sheerun/vim-polyglot'
+Plug 'davidhalter/jedi-vim'
 
 " Autocompletion
 Plug 'shougo/deoplete.nvim'
+" TODO: show signature info
+Plug 'deoplete-plugins/deoplete-jedi'
 
 " Tagbar
 Plug 'preservim/tagbar'
@@ -121,6 +124,9 @@ augroup END
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_enabled_python = ['isort', 'black']
 let g:neoformat_run_all_formatters = 1
+
+" jedi-vim
+let g:jedi#completions_enabled = 0
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -276,6 +282,13 @@ noremap <leader>hu :GitGutterUndoHunk<CR>
 
 " Code navigation <leader>c
 nnoremap <Leader>ct :TagbarToggle<CR>
+let g:jedi#goto_command = "<leader>cc"
+let g:jedi#goto_assignments_command = "<leader>ca"
+let g:jedi#goto_stubs_command = "<leader>cs"
+let g:jedi#goto_definitions_command = "<leader>cd"
+let g:jedi#documentation_command = "<leader>ck"
+let g:jedi#usages_command = "<leader>cu"
+let g:jedi#rename_command = "<leader>cr"
 
 " Quickfix list <leader>q
 nnoremap <leader>qq :copen<CR>
