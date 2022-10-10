@@ -293,6 +293,8 @@ let g:jedi#usages_command = "<leader>cu"
 let g:jedi#rename_command = "<leader>cr"
 
 " Quickfix list <leader>q
+nnoremap ]q :cnext<CR>
+nnoremap [q :cprev<CR>
 nnoremap <leader>qq :copen<CR>
 nnoremap <leader>qc :cclose<CR>
 
