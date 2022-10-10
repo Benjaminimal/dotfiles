@@ -17,8 +17,10 @@ Plug 'preservim/nerdtree'
 Plug 'PhilRunninger/nerdtree-visual-selection'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Sessions
+
+" Window, & Split Tab management
 Plug 'tpope/vim-obsession'
+Plug 'qpkorr/vim-bufkill'
 
 " Auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -244,10 +246,10 @@ noremap <leader>sf :BLines<CR>
 noremap <leader>sb :Lines<CR>
 
 " Buffer navigation <leader>b
+noremap ]b :bn<CR>
+noremap [b :bp<CR>
 noremap <leader>bb :Buffer<CR>
-noremap <leader>bc :bd<CR>
-noremap <leader>bn :bn<CR>
-noremap <leader>bp :bp<CR>
+noremap <Leader>bc :BD<CR>
 
 " Split navigation
 noremap <leader>x :<C-u>split<CR>
