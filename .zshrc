@@ -102,10 +102,28 @@ fi
 # I like neovim
 export EDITOR="nvim"
 alias v="nvim"
-alias vs='nvim -S'
 alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
+
+vs() {
+    # https://piet.me/branch-based-sessions-in-vim/
+    # Create .sessions directory if it doesn't exist
+    if [[ ! -d './.sessions' ]]; then
+        mkdir './.sessions'
+    fi
+
+    # Create a session file name based on the current branch
+    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/')_session.vim"
+    if [ -e $session_name ]; then
+        # If the session file exists open it
+        vim -S $session_name
+    else
+        # Otherwise create it
+        vim -c "Obsession $session_name" .
+    fi
+}
+
 
 # Virtualenv Wrapper Settings
 VENV_WRAPPER=$HOME/.local/bin/virtualenvwrapper.sh
