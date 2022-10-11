@@ -224,8 +224,8 @@ noremap <leader>fh :History<CR>
 
 " Serach <leader>s
 noremap <leader>ss <Plug>RgRawSearch
-vnoremap <leader>sv <Plug>RgRawVisualSelection
 noremap <leader>sw <Plug>RgRawWordUnderCursor
+vnoremap <leader>sw <Plug>RgRawVisualSelection
 noremap <leader>st :Tags<CR>
 noremap <leader>sf :BLines<CR>
 noremap <leader>sb :Lines<CR>
