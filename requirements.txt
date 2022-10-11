@@ -1,0 +1,8 @@
+pynvim
+jedi
+flake8
+python-lsp-server[all]
+pyls-isort
+python-lsp-black
+pyls-memestra
+pylsp-mypy
