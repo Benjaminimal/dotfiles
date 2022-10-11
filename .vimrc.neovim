@@ -224,9 +224,10 @@ noremap <leader>fc :GFiles?<CR>
 noremap <leader>fh :History<CR>
 
 " Serach <leader>s
-noremap <leader>ss <Plug>RgRawSearch
-noremap <leader>sw <Plug>RgRawWordUnderCursor
-vnoremap <leader>sw <Plug>RgRawVisualSelection
+noremap <leader>ss <Plug>RgRawSearch ''<CR>
+noremap <leader>sr <Plug>RgRawSearch
+noremap <leader>sw <Plug>RgRawWordUnderCursor<CR>
+vnoremap <leader>sw <Plug>RgRawVisualSelection<CR>
 noremap <leader>st :Tags<CR>
 noremap <leader>sf :BLines<CR>
 noremap <leader>sb :Lines<CR>
