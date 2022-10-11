@@ -54,7 +54,7 @@ Plug 'yggdroot/indentline'
 Plug 'jmcantrell/vim-virtualenv'
 
 " Make it pretty
-Plug 'joshdick/onedark.vim'
+Plug 'rebelot/kanagawa.nvim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ryanoasis/vim-devicons'
@@ -122,7 +122,8 @@ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 """"""""""""""""""""""""""""""""""""""""
 
 " Colors
-colorscheme onedark
+" TODO: apply to airline & konsole
+colorscheme kanagawa
 
 " Autoreload config on write
 autocmd! bufwritepost .vimrc source ~/.config/nvim/init.vim
@@ -349,6 +350,26 @@ local on_attach = function(client, bufnr)
   --vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
   --vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', '<leader>cf', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  -- Highlight references under cursor
+  -- https://sbulav.github.io/til/til-neovim-highlight-references/
+  -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/#serverCapabilities
+  if client.server_capabilities.documentHighlightProvider then
+      vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+      vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+      vim.api.nvim_create_autocmd("CursorHold", {
+          callback = vim.lsp.buf.document_highlight,
+          buffer = bufnr,
+          group = "lsp_document_highlight",
+          desc = "Document Highlight",
+      })
+      vim.api.nvim_create_autocmd("CursorMoved", {
+          callback = vim.lsp.buf.clear_references,
+          buffer = bufnr,
+          group = "lsp_document_highlight",
+          desc = "Clear All the References",
+      })
+  end
 end
 
 local lsp_flags = {
