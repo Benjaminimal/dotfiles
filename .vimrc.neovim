@@ -308,6 +308,13 @@ vnoremap K :m '<-2<CR>gv=gv
 """"""""""""""""""""""""""""""""""""""""
 
 lua << EOF
+-- Change diagnostic signs.
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "LspDiagnosticsSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
 -- lspconfig & compe
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -390,4 +397,12 @@ cmp.setup({
         ultisnips = false;
     };
 })
+
+-- Gutter signs
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
 EOF
