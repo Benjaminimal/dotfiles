@@ -273,8 +273,8 @@ noremap <leader>hu :GitGutterUndoHunk<CR>
 nnoremap <Leader>ct :TagbarToggle<CR>
 
 " Quickfix list <leader>q
-nnoremap ]q :cnext<CR>
-nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>zz
+nnoremap [q :cprev<CR>zz
 nnoremap <leader>qq :copen<CR>
 nnoremap <leader>qc :cclose<CR>
 
