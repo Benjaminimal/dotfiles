@@ -10,12 +10,6 @@ export ZSH=$HOME/.oh-my-zsh
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="ys"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -75,10 +69,8 @@ plugins=(
     fzf
     dotenv
     git
-    git-flow
     docker
     docker-compose
-    vagrant
     pip
     direnv
 )
@@ -114,37 +106,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 
-vs() {
-    # https://piet.me/branch-based-sessions-in-vim/
-    # Create .sessions directory if it doesn't exist
-    if [[ ! -d './.sessions' ]]; then
-        mkdir './.sessions'
-    fi
-
-    # Create a session file name based on the current branch
-    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/').session.vim"
-    if [ -e $session_name ]; then
-        # If the session file exists open it
-        vim -S $session_name
-    else
-        # Otherwise create it
-        vim -c "Obsession $session_name"
-    fi
-}
-
-vsls() {
-    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/').session.vim"
-    if [ -e $session_name ]; then
-        ls $session_name
-    fi
-}
-
-vsrm() {
-    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/').session.vim"
-    if [ -e $session_name ]; then
-        rm $session_name
-    fi
-}
 
 # Disable zsh time in favor of builtin command
 disable -r time
@@ -152,21 +113,6 @@ alias time='time -p'
 
 # fd has a werid name in debian
 alias fd='fdfind'
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
 
 export AWS_VAULT_BACKEND="file"
 
@@ -176,6 +122,29 @@ export GPG_TTY=$(tty)
 
 # Fzf
 export FZF_COMPLETION_OPTS='--hidden'
+
+# uv
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+if command -v zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+# required for node version manager
+# https://github.com/nvm-sh/nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# give node enough memory to build the frontend
+export NODE_OPTIONS="--max-old-space-size=9216"
+
+# Terraform completion
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/bin/terraform terraform
+
+# zettelkatsten home directory
+export ZK_NOTEBOOK_DIR="$HOME/notes"
 
 # Functions
 
@@ -209,6 +178,7 @@ ec2-bind-open-search-staging() {
 }
 
 
+# Quickly add an alias to .zshrc
 remember() { [[ $# -eq 2 ]] || exit; echo "alias ${1}='${2}'" >> ~/.zshrc; source ~/.zshrc }
 
 # Audio Ping
@@ -228,38 +198,13 @@ function mkpass {
 
 alias calc="ipython3"
 
-# alias python="python3"
-
 # url(de|en)code
 alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
 alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plus(sys.argv[1]))"'
 
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/terraform terraform
-
-# required for nvm
-# https://github.com/nvm-sh/nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+# TODO: can probably be removed
 # no need to source this everytime
-alias awsume='. awsume'
-
-# uv
-eval "$(uv generate-shell-completion zsh)"
-eval "$(uvx --generate-shell-completion zsh)"
-if command -v zoxide > /dev/null; then
-  eval "$(zoxide init zsh)"
-fi
-
-
-# zettelkatsten home directory
-export ZK_NOTEBOOK_DIR="$HOME/notes"
-
-# give node enough memory to build the frontend
-export NODE_OPTIONS="--max-old-space-size=9216"
+# alias awsume='. awsume'
 
 # don't open ghostscrip on typos
 alias gs='echo "ghostscript is disabled (you probably mistyped)"'
