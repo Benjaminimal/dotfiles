@@ -79,6 +79,7 @@ plugins=(
     docker-compose
     vagrant
     pip
+    direnv
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -96,10 +97,11 @@ export PATH=$PATH:$HOME/.local/bin
 
 # No more BEEEP!
 if [ -n "$DISPLAY" ]; then
-	xset b off
+    xset b off
 fi
 
 # I like neovim
+PATH=$HOME/.local/share/bob/nvim-bin:$PATH
 export EDITOR="nvim"
 alias v="nvim"
 alias vi="nvim"
@@ -114,30 +116,36 @@ vs() {
     fi
 
     # Create a session file name based on the current branch
-    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/')_session.vim"
+    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/').session.vim"
     if [ -e $session_name ]; then
         # If the session file exists open it
         vim -S $session_name
     else
         # Otherwise create it
-        vim -c "Obsession $session_name" .
+        vim -c "Obsession $session_name"
     fi
 }
 
+vsls() {
+    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/').session.vim"
+    if [ -e $session_name ]; then
+        ls $session_name
+    fi
+}
 
-# Virtualenv Wrapper Settings
-VENV_WRAPPER=$HOME/.local/bin/virtualenvwrapper.sh
-if [[ -e $VENV_WRAPPER ]]; then
-	export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-    export VIRTUALENVWRAPPER_VIRTUALENV=$HOME/.local/bin/virtualenv
-    export WORKON_HOME=$HOME/.virtualenvs
-    export PROJECT_HOME=$HOME/Projects
-    source $VENV_WRAPPER
-fi
+vsrm() {
+    local session_name=".sessions/$(git rev-parse --abbrev-ref HEAD | sed 's/\//-/').session.vim"
+    if [ -e $session_name ]; then
+        rm $session_name
+    fi
+}
 
 # Disable zsh time in favor of builtin command
 disable -r time
 alias time='time -p'
+
+# fd has a werid name in debian
+alias fd='fdfind'
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -165,14 +173,35 @@ export FZF_COMPLETION_OPTS='--hidden'
 
 # Functions
 
-# Pretty print json
-pjson() {
-    echo "${1}" | python -m json.tool
+# Access Redis via RedisInsight
+# https://formunauts.atlassian.net/wiki/spaces/INFRA/pages/2630352897/Inspect+Redis+with+RedisInsight
+
+ec2-bind-redis-staging() {
+    REDIS_ENDPOINT='formunauts-staging-redis-cluster-001.7xzxct.0001.euc1.cache.amazonaws.com'
+    source awsume formunauts-staging-admin && aws ssm start-session \
+        --target ${1} \
+        --document-name AWS-StartPortForwardingSessionToRemoteHost \
+        --parameters host="${REDIS_ENDPOINT}",portNumber="6379",localPortNumber="6379"
 }
 
-cjson() {
-    curl "${@}" | python -m json.tool
+ec2-bind-redis-prod() {
+    REDIS_ENDPOINT='formunauts-prod-redis-cluster-002.xigt7b.0001.euc1.cache.amazonaws.com'
+    source awsume formunauts-prod-admin && aws ssm start-session \
+        --target ${1} \
+        --document-name AWS-StartPortForwardingSessionToRemoteHost \
+        --parameters host="${REDIS_ENDPOINT}",portNumber="6379",localPortNumber="6379"
 }
+
+# Access OpenSearch via OpenSearch Dashboards
+
+ec2-bind-open-search-staging() {
+    OS_ENDPOINT='vpc-formunauts-staging-os-cz5shxp4si4uke4q2zb52sm2wq.eu-central-1.es.amazonaws.com'
+    source awsume formunauts-staging-admin && aws ssm start-session \
+        --target ${1} \
+        --document-name AWS-StartPortForwardingSessionToRemoteHost \
+        --parameters host="${OS_ENDPOINT}",portNumber="9200",localPortNumber="6379"
+}
+
 
 remember() { [[ $# -eq 2 ]] || exit; echo "alias ${1}='${2}'" >> ~/.zshrc; source ~/.zshrc }
 
@@ -191,9 +220,9 @@ function mkpass {
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
-alias calc="python3 -i -c 'import math as m; import random as r'"
+alias calc="ipython3"
 
-alias python="python3"
+# alias python="python3"
 
 # url(de|en)code
 alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
@@ -202,3 +231,29 @@ alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plu
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/terraform terraform
+
+# required for nvm
+# https://github.com/nvm-sh/nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# no need to source this everytime
+alias awsume='. awsume'
+
+# uv
+eval "$(uv generate-shell-completion zsh)"
+eval "$(uvx --generate-shell-completion zsh)"
+if command -v zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+
+
+# zettelkatsten home directory
+export ZK_NOTEBOOK_DIR="$HOME/notes"
+
+# give node enough memory to build the frontend
+export NODE_OPTIONS="--max-old-space-size=9216"
+
+# don't open ghostscrip on typos
+alias gs='echo "ghostscript is disabled (you probably mistyped)"'
