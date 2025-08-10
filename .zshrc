@@ -71,6 +71,7 @@ ZSH_THEME="ys"
 plugins=(
     aws
     colored-man-pages
+    vi-mode
     fzf
     dotenv
     git
@@ -99,6 +100,11 @@ export PATH=$PATH:$HOME/.local/bin
 if [ -n "$DISPLAY" ]; then
     xset b off
 fi
+
+# Enable vim mode in zsh
+export KEYTIMEOUT=1
+export VI_MODE_RESET_PROMPT_ON_MODE_CHANGE=true
+export VI_MODE_SET_CURSOR=true
 
 # I like neovim
 PATH=$HOME/.local/share/bob/nvim-bin:$PATH
