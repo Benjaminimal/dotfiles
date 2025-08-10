@@ -4,11 +4,22 @@
 "
 """"""""""""""""""""""""""""""""""""""""
 
-set commentary
-
+set NERDTree
+" ys, cs, ds, S
 set surround
+set commentary
+" aa, ia
+set argtextobj
+" cx, cxx, cX, cxc
 set exchange
+" ae, ie
+set textobj-entire
 set highlightedyank
+" ai, ii, aI
+set textobj-indent
+" %, g%, [%, ]%, a%
+set matchit
+set vim-paragraph-motion
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -19,31 +30,24 @@ set highlightedyank
 " Use system clipboard
 set clipboard+=unnamed
 
-" Line width ruler
-set colorcolumn=80
-
 " Numbers!
 set number
 set relativenumber
 
 " Footer
-set wildmenu
 set showcmd
-set laststatus=2
-set noshowmode
 
 " Scroll offset
 set scrolloff=3
 
-"" Searching
+" Searching
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
 
-" Split navigation
-set splitbelow
-set splitright
+" join lines via ide
+set ideajoin
 
 """"""""""""""""""""""""""""""""""""""""
 "
@@ -52,53 +56,119 @@ set splitright
 """"""""""""""""""""""""""""""""""""""""
 
 " Follow this leader
-let mapleader=','
-let maplocalleader='\'
+let mapleader=' '
+let maplocalleader=' '
 
-" Searching
-nnoremap n nzzzv
-nnoremap N Nzzzv
-nnoremap <leader>/ :noh<cr>
-
-" File navigation <leader>f
-map <Leader>ff <Action>(GotoFile)
-map <Leader>fs <Action>(GotoSymbol)
-map <Leader>fc <Action>(GotoClass)
-map <Leader>fa <Action>(GotoAction)
-map <Leader>f/ <Action>(FindInPath)
-
-nnoremap <Leader>fw :w<CR>
-nnoremap <Leader>fq :q<CR>
-" nnoremap <Leader>ft :NERDTreeToggle<CR>
-
-" Split navigation
-noremap <Leader>x :<C-u>split<CR>
-noremap <Leader>v :<C-u>vsplit<CR>
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
-map <C-m> <Action>(MoveEditorToOppositeTabGroup)
-
-" Buffer navigation <leader>b
-map <Leader>bb <Action>(RecentFiles)
-" noremap <Leader>bc :BD<CR>
-" noremap <Leader>bC :bd<CR>
-" noremap <Leader>bn :bn<CR>
-" noremap <Leader>bp :bp<CR>
+" easy eol yank
+nmap Y y$
 
 " Maintain visual mode after shifting
 vmap < <gv
 vmap > >gv
 
 " Move visual block
-vnoremap J :m '>+1<CR>gv=gv
-vnoremap K :m '<-2<CR>gv=gv
+vmap J :m '>+1<CR>gv=gv
+vmap K :m '<-2<CR>gv=gv
 
 " Fix location stack navigation
-map <C-o> <Action>(Back)
-map <C-i> <Action>(Forward)
+nmap <C-o> :action Back<cr>
+nmap <C-i> :action Forward<cr>
 
-" Git hunk navigation
-map ]g <Action>(VcsShowNextChangeMarker)
-map [g <Action>(VcsShowPrevChangeMarker)
+" Searching
+nmap n nzzzv
+nmap N Nzzzv
+nmap * *zzzv
+nmap <leader>/ :noh<cr>
+
+" Reload this
+nnoremap <leader>ve :e ~/.ideavimrc<CR>
+nnoremap <leader>vr :action IdeaVim.ReloadVimRc.reload<CR>
+
+" Finding Things
+nmap <leader><leader>a <action>(GotoAction)
+nmap <leader><leader>f <action>(GotoFile)
+map <leader><leader>b <action>(RecentFiles)
+nmap <leader><leader>t <action>(GotoSymbol)
+nmap <leader><leader>c <action>(GotoClass)
+nmap <leader><leader>/ <action>(FindInPath)
+vmap <leader><leader>/ <action>(FindInPath)
+
+" Files
+nmap ]f <action>(NextTab)
+nmap [f <action>(PreviousTab)
+nmap <leader>w :w<CR>
+nmap <leader>c <action>(CloseEditor)
+nmap <leader>e :NERDTreeFind<CR>
+nmap <leader>q <action>(CloseAllEditors)
+" nmap <leader>fx <action>(CloseAllEditorsButActive)
+" nmap <leader>fu <action>(CloseAllUnmodifiedEditors)
+" nmap <leader>ft :NERDTreeToggle<CR>
+
+" NERDTree
+let g:NERDTreeMapActivateNode = 'l'
+let g:NERDTreeMapPreview = 'gl'
+let g:NERDTreeMapOpenRecursively = 'L'
+let g:NERDTreeMapJumpParent = 'h'
+let g:NERDTreeMapJumpRoot = 'H'
+let g:NERDTreeMapCloseDir = 'c'
+let g:NERDTreeMapCloseChildren = 'C'
+let g:NERDTreeMapOpenSplit = 'x'
+let g:NERDTreeMapPreviewSplit = 'gx'
+let g:NERDTreeMapPreviewVSplit = 'gv'
+let g:NERDTreeMapOpenVSplit = 'v'
+
+" Splits
+nmap <leader>vx :<C-u>split<CR>
+nmap <leader>vv :<C-u>vsplit<CR>
+nmap <leader>vs <action>(ChangeSplitOrientation)
+nmap <leader>vd <action>(ToggleDistractionFreeMode)
+nmap <leader>vm <action>(MoveEditorToOppositeTabGroup)
+" nmap <leader>vM <action>()
+" nmap <leader>vz <action>()
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-l> <C-w>l
+nmap <C-h> <C-w>h
+
+" TODO: ]q [q
+
+" Error navigation
+nmap ]e <action>(GotoNextError)
+nmap [e <action>(GotoPreviousError)
+nmap E <action>(ShowErrorDescription)
+
+" Code navigation
+nmap <leader>nn <action>(GotoDeclaration)
+nmap <leader>nd <action>(GotoDeclarationOnly)
+nmap <leader>nu <action>(FindUsages)
+nmap <leader>ns <action>(FileStructurePopup)
+nmap <leader>nt <action>(TypeHierarchy)
+nmap <leader>nc <action>(CallHierarchy)
+nmap <leader>nm <action>(MethodHierarchy)
+nmap <leader>nr <action>(RenameElement)
+
+" Run
+nmap <leader><leader>r <action>(RunConfiguration)
+nmap <leader><leader>R <action>(ShowLiveRunConfigurations)
+
+" Git
+nmap ]g <action>(VcsShowNextChangeMarker)
+nmap [g <action>(VcsShowPrevChangeMarker)
+nmap <leader>gg <action>(Git.Menu)
+vmap <leader>gg <action>(Git.Menu)
+nmap <leader>gs <action>(Vcs.Show.Local.Changes)
+nmap <leader>gb <action>(Annotate)
+nmap <leader>hp <action>(VcsShowCurrentChangeMarker)
+nmap <leader>hr <action>(Vcs.RollbackChangedLines)
+" TODO: git diff
+" TODO: git log
+" TODO: git hub link
+
+" TODO: folds
+
+" TODO: gx open url under cursor
+
+" Scratch
+" TODO: think of a better leader
+nmap <leader>ab <action>(NewScratchBuffer)
+nmap <leader>af <action>(NewScratchFile)
